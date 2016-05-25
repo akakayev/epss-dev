@@ -1,0 +1,16 @@
+#textReg{
+
+   margin: auto;
+}
+
+input{
+	margin: 3px;
+}
+select{
+	margin: 3px;
+}
+
+/*уменьшение длины */
+#semester{
+	width: 64px;
+}
