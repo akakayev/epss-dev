@@ -8,6 +8,7 @@
 		<link href="<c:url value='/static/css/bootstrap.css' />"  rel="stylesheet"/>
 		<link href="<c:url value='/static/css/app.css' />" rel="stylesheet"/>
 		<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css" />
+		<script src="<c:url value='/static/js/jquery-2.2.3.js'/>"></script>
 	</head>
 
 	<body>
@@ -52,11 +53,22 @@
 							<div >
 								<a href="<c:url value='/registrationStudent' />">Add New Student</a>
 							</div>
+							<div >
+								<a onclick="load()" href="#">Add New Student</a>
+								<script>
+									function load(){
+										$("#mainLoad").load("/registrationLector");
+									}
+								</script>
+							</div>
 						</form>
 					</div>
 				</div>
 			</div>
 		</div>
+	<div id = "mainLoad">
+
+	</div>
 
 	</body>
 </html>
