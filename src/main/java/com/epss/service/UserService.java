@@ -1,7 +1,6 @@
 package com.epss.service;
 
 
-import com.epss.model.Student;
 import com.epss.model.User;
 
 import java.util.List;
@@ -12,7 +11,7 @@ public interface UserService {
 
     User findByLogin(String login);
 
-    void saveUser(Student user);
+    void saveUser(User user);
 
     void updateUser(User user);
 
@@ -21,4 +20,6 @@ public interface UserService {
     List<User> findAllUsers();
 
     boolean isUserLoginUnique(Integer id, String sso);
+
+    public boolean isLoginExists(String login);
 }

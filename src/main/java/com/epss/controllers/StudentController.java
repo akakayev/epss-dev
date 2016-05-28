@@ -1,4 +1,4 @@
-package com.epss.controller;
+package com.epss.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @Controller
 @RequestMapping("/")
 @SessionAttributes("roles")
+public class StudentController {
 
-public class StudentRegistrationController {
-    @RequestMapping(value = { "/registrationStudent" }, method = RequestMethod.GET)
+    @RequestMapping(value = { "/student", "/student/cabinet" }, method = RequestMethod.GET)
     public String listUsers(ModelMap model) {
 
-        return "/registrationStudent";
+        return "student/cabinet";
     }
 }

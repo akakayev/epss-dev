@@ -1,5 +1,6 @@
 package com.epss.model;
 
+import com.epss.dto.StudentRegistrationDto;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -10,6 +11,11 @@ import java.io.Serializable;
 @Table(name = "STUDENTS")
 public class Student implements Serializable {
 
+    public Student(StudentRegistrationDto studentRegistrationDto){
+        this.recordBookNumber=studentRegistrationDto.getRecordBookNumber();
+        this.group= studentRegistrationDto.getGroup();
+        this.semester=studentRegistrationDto.getSemester();
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -22,11 +28,6 @@ public class Student implements Serializable {
     @Column(name = "SEMESTER", nullable = false)
     private Byte semester;
 
-    //    @NotNull
-//    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//    @JoinTable(name = "USERS",
-//            joinColumns = { @JoinColumn(name = "USER_ID",referencedColumnName = "ID") })
-//    private User user;
     //join
     @NotNull
     @Column(name = "GROUP_ID", nullable = false)
@@ -76,48 +77,5 @@ public class Student implements Serializable {
         this.semester = semester;
     }
 
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (!(o instanceof Student)) return false;
-//
-//        Student student = (Student) o;
-//
-//        if (id != null ? !id.equals(student.id) : student.id != null) return false;
-//        if (recordBookNumber != null ? !recordBookNumber.equals(student.recordBookNumber) : student.recordBookNumber != null)
-//            return false;
-//        if (semester != null ? !semester.equals(student.semester) : student.semester != null) return false;
-//        if (user != null ? !user.equals(student.user) : student.user != null) return false;
-//        return group != null ? group.equals(student.group) : student.group == null;
-//
-//    }
-
-//    @Override
-//    public int hashCode() {
-//        int result = id != null ? id.hashCode() : 0;
-//        result = 31 * result + (recordBookNumber != null ? recordBookNumber.hashCode() : 0);
-//        result = 31 * result + (semester != null ? semester.hashCode() : 0);
-//        result = 31 * result + (user != null ? user.hashCode() : 0);
-//        result = 31 * result + (group != null ? group.hashCode() : 0);
-//        return result;
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "Student{" +
-//                "id=" + id +
-//                ", recordBookNumber=" + recordBookNumber +
-//                ", semester=" + semester +
-//                ", user=" + user +
-//                ", group=" + group +
-//                '}';
-//    }
 }

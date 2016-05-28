@@ -2,7 +2,6 @@ package com.epss.service;
 
 
 import com.epss.dao.UserDao;
-import com.epss.model.Student;
 import com.epss.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -30,8 +29,9 @@ public class UserServiceImpl implements UserService{
         return user;
     }
 
-    public void saveUser(Student student) {
-        dao.save(student);
+    public void saveUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        dao.save(user);
     }
 
     /*
@@ -65,5 +65,10 @@ public class UserServiceImpl implements UserService{
     public boolean isUserLoginUnique(Integer id, String sso) {
         User user = findByLogin(sso);
         return ( user == null || ((id != null) && (user.getId() == id)));
+    }
+    @Override
+    public boolean isLoginExists(String login){
+        User user = findByLogin(login);
+        return user==null;
     }
 }

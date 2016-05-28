@@ -1,43 +1,38 @@
-package com.epss.controller;
+package com.epss.controllers.rest;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-
-import com.epss.model.Student;
-import com.epss.service.UserService;
+import com.epss.controllers.AjaxResponseBody;
+import com.epss.controllers.Views;
+import com.epss.dto.StudentRegistrationDto;
+import com.epss.service.StudentService;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.annotation.JsonView;
+import java.util.HashMap;
 
 
 @RestController
-public class LectorRegistrationController {
+public class StudentRegistrationRestController {
+
 
     @Autowired
-    UserService userService;
+    StudentService studentService;
 
     // @ResponseBody, not necessary, since class is annotated with @RestController
     // @RequestBody - Convert the json data into object (SearchCriteria) mapped by field name.
     // @JsonView(Views.Public.class) - Optional, limited the json data display to client.
     @JsonView(Views.Public.class)
     @RequestMapping(value = "/reg")
-    public AjaxResponseBody getSearchResultViaAjax(@RequestBody Student student) {
+    public AjaxResponseBody getSearchResultViaAjax(@RequestBody StudentRegistrationDto student) {
         AjaxResponseBody result = new AjaxResponseBody();
-        System.out.println(student.getId());
         try{
-            userService.saveUser(student);
+            studentService.saveStudent(student);
         }catch (ConstraintViolationException e){
             result.setMsg("студент с таким номером зачетки или логином уже есть");
-            return result;
+            throw e;
         }
         HashMap<Integer,String> univers=new HashMap<>();
         univers.put(1,"SevGU");
