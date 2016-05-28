@@ -12,8 +12,13 @@ import java.util.List;
 @RequestMapping("/")
 @SessionAttributes("roles")
 public class LectorController {
-    @RequestMapping(value = { "/lector", "/lector/cabinet" }, method = RequestMethod.GET)
+    @RequestMapping(value = { "/registrationLector"}, method = RequestMethod.GET)
     public String listUsers(ModelMap model) {
+
+        return "registrationLector";
+    }
+    @RequestMapping(value = { "/lector", "/lector/cabinet" }, method = RequestMethod.GET)
+    public String lector(ModelMap model) {
 
         return "lector/cabinet";
     }
