@@ -50,6 +50,13 @@
             <div>
                 <input type="number" class="form-control" id="recordBookNumber"
                             placeholder="Номер зачетки"/>
+                <style>
+                    input[type=number]::-webkit-inner-spin-button,
+                    input[type=number]::-webkit-outer-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+                </style>
             </div>
             <div>
                 <label>Семестр</label>
@@ -154,7 +161,7 @@
         var pas = $('#password').val();
         var rPas = $('#repetPassword').val();
         if((pas != rPas)&(pas != "")){
-            $('#alertPas').text("Пароли не совпадает с проверкой или незавполнен!!!");
+            $('#alertPas').text("Пароль не совпадает с проверкой или не заполнен!!!");
             $('#colorAlertPas').text("#colorAlertPas{color:red;}");
             return false;
         }
