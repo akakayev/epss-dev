@@ -4,8 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-<html>
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>User Registration Form</title>
@@ -25,21 +23,27 @@
             <h4>Введите пожалуйста данные для регистрации</h4>
 
             <div>
+                <label>Фамилия</label>
                 <input type="txt" class="form-control" id="lastName"  placeholder="Фамилия"/>
             </div>
             <div>
-                <input type="txt" class="form-control" id="firstName"placeholder="Имя"/>
+                <label>Имя</label>
+                <input type="txt" class="form-control" id="firstName" placeholder="Имя"/>
             </div>
             <div>
+                <label>Отчество</label>
                 <input type="txt" class="form-control" id="middleName"  placeholder="Отчество"/>
             </div>
             <div>
-                <input type="txt" class="form-control" id="email"   placeholder="Email" />
+                <label>Электронная почта</label>
+                <input type="txt" class="form-control" id="login"   placeholder="Email" />
             </div>
             <div>
+                <label>Пароль</label>
                 <input type="password" class="form-control" id="password"  placeholder="Пароль"/>
             </div>
             <div>
+                <label>Повторите пароль</label>
                 <input type="password" class="form-control" id="repetPassword"  placeholder="Повторите пароль"/>
                 <div>
                     <style id ="colorAlertPas"></style>
@@ -48,6 +52,7 @@
             </div>
 
             <div>
+                <label>Зачетка</label>
                 <input type="number" class="form-control" id="recordBookNumber"
                             placeholder="Номер зачетки"/>
                 <style>
@@ -116,7 +121,7 @@
         user["firstName"] = $("#firstName").val();
         user["middleName"] = $("#middleName").val();
         user["lastName"]= $("#lastName").val();
-        user["login"]= $("#email").val();
+        user["login"]= $("#login").val();
         user["password"]= $("#password").val();
         user["primaryRole"]= 'STUDENT'
         var student={}
@@ -163,7 +168,7 @@
         var rPas = $('#repetPassword').val();
         if((pas != rPas)&(pas != "")){
             $('#alertPas').text("Пароль не совпадает с проверкой или не заполнен!!!");
-            $('#colorAlertPas').text("#colorAlertPas{color:red;}");
+            $('#colorAlertPas').text("#alertPas{color:red;}");
             return false;
         }
         else{

@@ -25,21 +25,27 @@
             <h4>Введите пожалуйста данные для регистрации</h4>
 
             <div>
+                <label>Фамилия</label>
                 <input type="txt" class="form-control" id="lastName"  placeholder="Фамилия"/>
             </div>
             <div>
+                <label>Имя</label>
                 <input type="txt" class="form-control" id="firstName"placeholder="Имя"/>
             </div>
             <div>
+                <label>Отчество</label>
                 <input type="txt" class="form-control" id="middleName"  placeholder="Отчество"/>
             </div>
             <div>
+                <label>Электронная почта</label>
                 <input type="txt" class="form-control" id="email"   placeholder="Email" />
             </div>
             <div>
+                <label>Пароль</label>
                 <input type="password" class="form-control" id="password"  placeholder="Пароль"/>
             </div>
             <div>
+                <label>Повторите пароль</label>
                 <input type="password" class="form-control" id="repetPassword"  placeholder="Повторите пароль"/>
                 <div>
                     <style id ="colorAlertPas"></style>
@@ -47,9 +53,6 @@
                 </div>
             </div>
 
-            <div>
-
-            </div>
             <div>
                 <label>Ученая степень</label>
                 <select id="academicDegree" class="form-control">
