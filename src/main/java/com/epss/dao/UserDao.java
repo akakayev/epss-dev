@@ -13,7 +13,7 @@ public interface UserDao {
 	
 	User findByLogin(String login);
 	
-	void save(Student user);
+	void save(User user);
 	
 	void deleteBySSO(String sso);
 	

@@ -7,7 +7,9 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import com.epss.dto.StudentRegistrationDto;
 import com.epss.model.Student;
+import com.epss.service.StudentService;
 import com.epss.service.UserService;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,20 +26,21 @@ public class LectorRegistrationController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    StudentService studentService;
 
     // @ResponseBody, not necessary, since class is annotated with @RestController
     // @RequestBody - Convert the json data into object (SearchCriteria) mapped by field name.
     // @JsonView(Views.Public.class) - Optional, limited the json data display to client.
     @JsonView(Views.Public.class)
     @RequestMapping(value = "/reg")
-    public AjaxResponseBody getSearchResultViaAjax(@RequestBody Student student) {
+    public AjaxResponseBody getSearchResultViaAjax(@RequestBody StudentRegistrationDto student) {
         AjaxResponseBody result = new AjaxResponseBody();
-        System.out.println(student.getId());
         try{
-            userService.saveUser(student);
+            studentService.saveStudent(student);
         }catch (ConstraintViolationException e){
             result.setMsg("студент с таким номером зачетки или логином уже есть");
-            return result;
+            throw e;
         }
         HashMap<Integer,String> univers=new HashMap<>();
         univers.put(1,"SevGU");
