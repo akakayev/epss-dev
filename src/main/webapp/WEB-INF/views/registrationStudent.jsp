@@ -4,8 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-<html>
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>User Registration Form</title>
@@ -25,21 +23,27 @@
             <h4>Введите пожалуйста данные для регистрации</h4>
 
             <div>
+                <label>Фамилия</label>
                 <input type="txt" class="form-control" id="lastName"  placeholder="Фамилия"/>
             </div>
             <div>
-                <input type="txt" class="form-control" id="firstName"placeholder="Имя"/>
+                <label>Имя</label>
+                <input type="txt" class="form-control" id="firstName" placeholder="Имя"/>
             </div>
             <div>
+                <label>Отчество</label>
                 <input type="txt" class="form-control" id="middleName"  placeholder="Отчество"/>
             </div>
             <div>
-                <input type="txt" class="form-control" id="email"   placeholder="Email" />
+                <label>Электронная почта</label>
+                <input type="txt" class="form-control" id="login"   placeholder="Email" />
             </div>
             <div>
+                <label>Пароль</label>
                 <input type="password" class="form-control" id="password"  placeholder="Пароль"/>
             </div>
             <div>
+                <label>Повторите пароль</label>
                 <input type="password" class="form-control" id="repetPassword"  placeholder="Повторите пароль"/>
                 <div>
                     <style id ="colorAlertPas"></style>
@@ -48,6 +52,7 @@
             </div>
 
             <div>
+                <label>Зачетка</label>
                 <input type="number" class="form-control" id="recordBookNumber"
                             placeholder="Номер зачетки"/>
                 <style>
@@ -79,14 +84,19 @@
                 <select id="group" path="group" class="form-control">
                     //TODO: вывести список групп, полученный с сервера
                     <c:forEach items="${groups}" var="group">
-                    <option value="${group.groupName}">${group.groupName}</option>
+                    <option value="${group.id}">${group.groupName}</option>
                     </c:forEach>
                 </select>
                 </div>
             </div>
+                <label></label>
+                <label></label>
+                <label></label>
             <div>
                 <button id="submit" type="submit" class="btn btn-default">Зарегистрироваться</button>
             </div>
+            <div id="json"></div>
+            <div id="feedback"></div>
         </form>
     </div>
     <div class=" col-sm-2 col-md-3"></div>
@@ -113,21 +123,21 @@
 
     });
 
+
     function searchViaAjax() {
 
         var user = {}
         user["firstName"] = $("#firstName").val();
         user["middleName"] = $("#middleName").val();
         user["lastName"]= $("#lastName").val();
-        user["login"]= $("#email").val();
+        user["login"]= $("#login").val();
         user["password"]= $("#password").val();
         user["primaryRole"]= 'STUDENT'
         var student={}
         student['recordBookNumber']=$("#recordBookNumber").val();
         student['semester']=$("#semester").val();
-        student['group']='1';
+        student['group']=$("#group").val();
         student['user']=user;
-
         $.ajax({
             type : "POST",
             contentType : "application/json",
@@ -137,7 +147,8 @@
             timeout : 100000,
             success : function(data) {
                 console.log("SUCCESS: ", data);
-                display(data);
+                display(data,"#feedback");
+                display(student,"#json");
             },
             error : function(e) {
                 console.log("ERROR: ", e);
@@ -155,10 +166,10 @@
         $("#submit").prop("disabled", flag);
     }
 
-    function display(data) {
+    function display(data,id) {
         var json = "<h4>Ajax Response</h4><pre>"
                 + JSON.stringify(data, null, 4) + "</pre>";
-        $('#feedback').html(json);
+        $(id).html(json);
     }
 
     function checkPassword(){
@@ -166,7 +177,7 @@
         var rPas = $('#repetPassword').val();
         if((pas != rPas)&(pas != "")){
             $('#alertPas').text("Пароль не совпадает с проверкой или не заполнен!!!");
-            $('#colorAlertPas').text("#colorAlertPas{color:red;}");
+            $('#colorAlertPas').text("#alertPas{color:red;}");
             return false;
         }
         else{
@@ -176,7 +187,7 @@
         }
     }
 
+
 </script>
-<div id="feedback"></div>
 </body>
 </html>
