@@ -15,8 +15,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
 
 @Entity
 @Table(name = "USERS")
@@ -38,17 +40,18 @@ public class User implements Serializable {
     @Column(name = "LAST_NAME", nullable = false)
     private String lastName;
 
-    @NotEmpty
+    @NotNull
+    @Range(min=0,max=1)
     @Column(name = "APPROVED", nullable = false)
-    private Boolean approved = false;
+    private Byte approved = 0;
 
-    @NotEmpty
+    @NotNull
+    @Range(min=0,max=1)
     @Column(name = "DISABLED", nullable = false)
-    private Boolean disabled = false;
+    private Byte disabled = 0;
 
-    @NotEmpty
     @Column(name = "PHOTO", nullable = true)
-    private File photo = null;
+    private byte [] photo = null;
 
     @NotEmpty
     @Column(name = "LOGIN", nullable = false)
@@ -94,27 +97,27 @@ public class User implements Serializable {
         this.lastName = lastName;
     }
 
-    public Boolean getApproved() {
+    public Byte getApproved() {
         return approved;
     }
 
-    public void setApproved(Boolean approved) {
+    public void setApproved(Byte approved) {
         this.approved = approved;
     }
 
-    public Boolean getDisabled() {
+    public Byte getDisabled() {
         return disabled;
     }
 
-    public void setDisabled(Boolean disabled) {
+    public void setDisabled(Byte disabled) {
         this.disabled = disabled;
     }
 
-    public File getPhoto() {
+    public byte[] getPhoto() {
         return photo;
     }
 
-    public void setPhoto(File photo) {
+    public void setPhoto(byte [] photo) {
         this.photo = photo;
     }
 

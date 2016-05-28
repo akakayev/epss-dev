@@ -100,7 +100,7 @@ public class HomePageController {
             return "registration";
         }
 
-        userService.saveUser(user);
+//        userService.saveUser(user);
 
         model.addAttribute("success", "User " + user.getFirstName() + " "+ user.getLastName() + " registered successfully");
         model.addAttribute("loggedinuser", getPrincipal());

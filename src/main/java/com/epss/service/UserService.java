@@ -1,6 +1,7 @@
 package com.epss.service;
 
 
+import com.epss.model.Student;
 import com.epss.model.User;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public interface UserService {
 
     User findByLogin(String login);
 
-    void saveUser(User user);
+    void saveUser(Student user);
 
     void updateUser(User user);
 

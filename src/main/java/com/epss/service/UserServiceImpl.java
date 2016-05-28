@@ -2,6 +2,7 @@ package com.epss.service;
 
 
 import com.epss.dao.UserDao;
+import com.epss.model.Student;
 import com.epss.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -29,9 +30,8 @@ public class UserServiceImpl implements UserService{
         return user;
     }
 
-    public void saveUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        dao.save(user);
+    public void saveUser(Student student) {
+        dao.save(student);
     }
 
     /*

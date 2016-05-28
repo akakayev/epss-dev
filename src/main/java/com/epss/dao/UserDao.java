@@ -1,6 +1,7 @@
 package com.epss.dao;
 
 
+import com.epss.model.Student;
 import com.epss.model.User;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public interface UserDao {
 	
 	User findByLogin(String login);
 	
-	void save(User user);
+	void save(Student user);
 	
 	void deleteBySSO(String sso);
 	
