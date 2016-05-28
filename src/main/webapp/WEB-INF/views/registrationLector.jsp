@@ -38,7 +38,7 @@
             </div>
             <div>
                 <label>Электронная почта</label>
-                <input type="txt" class="form-control" id="email"   placeholder="Email" />
+                <input type="txt" class="form-control" id="login"   placeholder="Email" />
             </div>
             <div>
                 <label>Пароль</label>
@@ -62,7 +62,7 @@
                 </select>
 
                 <label>Должност</label>
-                <select id="post" class="form-control">
+                <select id="position" class="form-control">
                     <option>Аспирант</option>
                     <option>Ассистент</option>
                     <option>Ведущий научный сотрудник</option>
@@ -126,25 +126,26 @@
         user["firstName"] = $("#firstName").val();
         user["middleName"] = $("#middleName").val();
         user["lastName"]= $("#lastName").val();
-        user["login"]= $("#email").val();
+        user["login"]= $("#login").val();
         user["password"]= $("#password").val();
         user["primaryRole"]= 'LECTOR'
-        var student={}
-        student['academicDegree']=$("#academicDegree").val();
-        student['semester']=$("#post").val();
-        student['departmentOfTheUniversity']=$("#departmentOfTheUniversity").val();
-        student['userId']=user;
+        var lector={}
+        lector['degree']=$("#academicDegree").val();
+        lector['position']=$("#position").val();
+        lector['departmentId']=$("#departmentOfTheUniversity").val();
+        lector['user']=user;
 
         $.ajax({
             type : "POST",
             contentType : "application/json",
-             url : "/epss/reg",
-            data : JSON.stringify(student),
+             url : "/epss/regLector",
+            data : JSON.stringify(lector),
             dataType : 'json',
             timeout : 100000,
             success : function(data) {
                 console.log("SUCCESS: ", data);
-                display(data);
+                display(data,"#feedback");
+                display(lector,"#json");
             },
             error : function(e) {
                 console.log("ERROR: ", e);

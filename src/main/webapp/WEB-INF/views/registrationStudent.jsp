@@ -108,12 +108,8 @@
 
         $("#userForm").submit(function(event) {
 
-            // Disble the search button
             enableSearchButton(false);
-
-            // Prevent the form from submitting via the browser.
             event.preventDefault();
-
             if(checkPassword()==true){
                 searchViaAjax();
             }
@@ -159,7 +155,6 @@
                 enableSearchButton(true);
             }
         });
-
     }
 
     function enableSearchButton(flag) {
@@ -186,8 +181,6 @@
             return true;
         }
     }
-
-
 </script>
 </body>
 </html>
