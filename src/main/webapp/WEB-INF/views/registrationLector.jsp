@@ -79,13 +79,22 @@
                 </select>
 
                 <label>Кафедра университета</label>
-                <select id="departmentOfTheUniversity" class="form-control">
+                <select id="departmentOfTheUniversity"  class="form-control">
+                    <c:forEach items="${departments}" var="department">
+                        <option value="${department.id}">${department.name}</option>
+                    </c:forEach>
                 </select>
+
             </div>
+                <label></label>
+                <label></label>
+                <label></label>
             <div>
                 <button id="submit" type="submit" class="btn btn-default">Зарегистрироваться</button>
             </div>
         </form>
+        <div id="json"></div>
+        <div id="feedback"></div>
     </div>
     <div class=" col-sm-2 col-md-3"></div>
 
@@ -129,7 +138,7 @@
         $.ajax({
             type : "POST",
             contentType : "application/json",
-//            url : "/epss/reg",
+             url : "/epss/reg",
             data : JSON.stringify(student),
             dataType : 'json',
             timeout : 100000,
@@ -153,11 +162,12 @@
         $("#submit").prop("disabled", flag);
     }
 
-    function display(data) {
+    function display(data,id) {
         var json = "<h4>Ajax Response</h4><pre>"
                 + JSON.stringify(data, null, 4) + "</pre>";
-        $('#feedback').html(json);
+        $(id).html(json);
     }
+
 
     function checkPassword(){
         var pas = $('#password').val();
@@ -175,7 +185,6 @@
     }
 
 </script>
-<div id="feedback"></div>
 
 </body>
 </html>
