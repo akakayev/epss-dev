@@ -84,14 +84,19 @@
                 <select id="group" path="group" class="form-control">
                     //TODO: вывести список групп, полученный с сервера
                     <c:forEach items="${groups}" var="group">
-                    <option value="${group.groupName}">${group.groupName}</option>
+                    <option value="${group.id}">${group.groupName}</option>
                     </c:forEach>
                 </select>
                 </div>
             </div>
+                <label></label>
+                <label></label>
+                <label></label>
             <div>
                 <button id="submit" type="submit" class="btn btn-default">Зарегистрироваться</button>
             </div>
+            <div id="json"></div>
+            <div id="feedback"></div>
         </form>
     </div>
     <div class=" col-sm-2 col-md-3"></div>
@@ -118,6 +123,7 @@
 
     });
 
+
     function searchViaAjax() {
 
         var user = {}
@@ -130,9 +136,8 @@
         var student={}
         student['recordBookNumber']=$("#recordBookNumber").val();
         student['semester']=$("#semester").val();
-        student['group']='1';
+        student['group']=$("#group").val();
         student['user']=user;
-
         $.ajax({
             type : "POST",
             contentType : "application/json",
@@ -142,7 +147,8 @@
             timeout : 100000,
             success : function(data) {
                 console.log("SUCCESS: ", data);
-                display(data);
+                display(data,"#feedback");
+                display(student,"#json");
             },
             error : function(e) {
                 console.log("ERROR: ", e);
@@ -160,10 +166,10 @@
         $("#submit").prop("disabled", flag);
     }
 
-    function display(data) {
+    function display(data,id) {
         var json = "<h4>Ajax Response</h4><pre>"
                 + JSON.stringify(data, null, 4) + "</pre>";
-        $('#feedback').html(json);
+        $(id).html(json);
     }
 
     function checkPassword(){
@@ -181,7 +187,7 @@
         }
     }
 
+
 </script>
-<div id="feedback"></div>
 </body>
 </html>
