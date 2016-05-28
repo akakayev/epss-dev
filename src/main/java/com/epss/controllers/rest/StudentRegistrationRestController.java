@@ -1,31 +1,23 @@
-package com.epss.controller;
+package com.epss.controllers.rest;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-
+import com.epss.controllers.AjaxResponseBody;
+import com.epss.controllers.Views;
 import com.epss.dto.StudentRegistrationDto;
-import com.epss.model.Student;
 import com.epss.service.StudentService;
-import com.epss.service.UserService;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.annotation.JsonView;
+import java.util.HashMap;
 
 
 @RestController
-public class LectorRegistrationController {
+public class StudentRegistrationRestController {
 
-    @Autowired
-    UserService userService;
+
     @Autowired
     StudentService studentService;
 

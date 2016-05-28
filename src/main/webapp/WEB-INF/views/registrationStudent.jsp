@@ -77,6 +77,7 @@
                 <div>
                 <label>Группа</label>
                 <select id="group" path="group" class="form-control">
+                    //TODO: вывести список групп, полученный с сервера
                 </select>
                 </div>
             </div>
@@ -121,8 +122,8 @@
         var student={}
         student['recordBookNumber']=$("#recordBookNumber").val();
         student['semester']=$("#semester").val();
-        student['group']='31';
-        student['userId']='13232';
+        student['group']='1';
+        student['user']=user;
 
         $.ajax({
             type : "POST",
