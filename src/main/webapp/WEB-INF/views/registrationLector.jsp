@@ -59,7 +59,7 @@
                 </select>
 
                 <label>Должност</label>
-                <select id="post" class="form-control">
+                <select id="position" class="form-control">
                     <option>Аспирант</option>
                     <option>Ассистент</option>
                     <option>Ведущий научный сотрудник</option>
@@ -77,6 +77,9 @@
 
                 <label>Кафедра университета</label>
                 <select id="departmentOfTheUniversity" class="form-control">
+                    <c:forEach items="${departments}" var="department">
+                        <option value="${department.name}">${department.name}</option>
+                    </c:forEach>
                 </select>
             </div>
             <div>
@@ -117,17 +120,17 @@
         user["login"]= $("#email").val();
         user["password"]= $("#password").val();
         user["primaryRole"]= 'LECTOR'
-        var student={}
-        student['academicDegree']=$("#academicDegree").val();
-        student['semester']=$("#post").val();
-        student['departmentOfTheUniversity']=$("#departmentOfTheUniversity").val();
-        student['userId']=user;
+        var lector={}
+        lector['degree']=$("#academicDegree").val();
+        lector['position']=$("#position").val();
+        lector['departmentId']='1';
+        lector['user']=user;
 
         $.ajax({
             type : "POST",
             contentType : "application/json",
-//            url : "/epss/reg",
-            data : JSON.stringify(student),
+            url : "/epss/regLector",
+            data : JSON.stringify(lector),
             dataType : 'json',
             timeout : 100000,
             success : function(data) {
