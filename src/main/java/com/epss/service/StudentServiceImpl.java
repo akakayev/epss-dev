@@ -1,12 +1,16 @@
 package com.epss.service;
 
+import com.epss.dao.GroupDao;
 import com.epss.dao.StudentDao;
 import com.epss.dao.UserDao;
 import com.epss.dto.StudentRegistrationDto;
+import com.epss.model.Group;
 import com.epss.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service("studentService")
 @Transactional
@@ -14,6 +18,9 @@ public class StudentServiceImpl implements StudentService{
 
     @Autowired
     private StudentDao studentDao;
+    @Autowired
+    private GroupDao groupDao;
+
     @Autowired
     private UserService userService;
 
@@ -30,6 +37,11 @@ public class StudentServiceImpl implements StudentService{
             stusent.setUserId(userId);
             studentDao.saveStudent(stusent);
         }
+    }
+
+    @Override
+    public List<Group> getGroupList() {
+        return groupDao.getGroupList();
     }
 
     private boolean canAddStudent(String login, int recordBookNumber) {

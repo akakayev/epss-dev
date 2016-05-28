@@ -83,6 +83,9 @@
                 <label>Группа</label>
                 <select id="group" path="group" class="form-control">
                     //TODO: вывести список групп, полученный с сервера
+                    <c:forEach items="${groups}" var="group">
+                    <option value="${group.groupName}">${group.groupName}</option>
+                    </c:forEach>
                 </select>
                 </div>
             </div>
