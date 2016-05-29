@@ -15,14 +15,13 @@
 
 <body>
 <div class="generic-container">
-    <%@include file="authheader.jsp" %>
+    <%@include file="head.jsp" %>
 
-    <div class="well lead">User Registration Form</div>
 
     <div class="col-sm-2 col-md-3"></div>
     <div id="textReg" class="col-xs-12 col-sm-8 col-md-6">
         <form  id="userForm" class="form-horizontal">
-            <h4>Введите пожалуйста данные для регистрации</h4>
+            <h4>Введите пожалуйста данные для регистрации преподавателя</h4>
 
             <div>
                 <label>Фамилия</label>
@@ -146,6 +145,8 @@
                 console.log("SUCCESS: ", data);
                 display(data,"#feedback");
                 display(lector,"#json");
+                var json = JSON.parse(data);
+                displayRezultRegistration(json);
             },
             error : function(e) {
                 console.log("ERROR: ", e);
@@ -183,6 +184,10 @@
             $('#colorAlertPas').text("");
             return true;
         }
+    }
+
+    function displayRezultRegistration(json){
+
     }
 
 </script>

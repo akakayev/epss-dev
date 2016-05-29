@@ -11,41 +11,40 @@
     <script src="<c:url value='/static/js/bootstrap.js' />"></script>
     <script type="text/javascript" src="<c:url value="/static/js/jquery-2.2.3.js"/>"></script>
 
-
-
 </head>
 <body>
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container">
-        <form:form method="POST"  commandName="userForm"  class="form-horizontal">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-        </form:form>
-        <a class="navbar-brand" href="#">Project name</a>
-        <div class="collapse navbar-collapse">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <a class="navbar-brand" href="<c:url value='/login' />">Система поддержки учебного процесса</a>
+        <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#" onclick="loadMain('Успеваемость')">Успеваемость</a></li>
-                <li><a href="#about" onclick="loadMain('Расписание')">Расписание</a>
+                <li><a href="#">Об университете</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Регистрация<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="<c:url value='/registrationStudent' />" >Регитрация студента</a></li>
+                        <li><a href="<c:url value='/registrationLector' />">Регистрация для преподавателя</a></li>
+                    </ul>
                 </li>
-                <li><a href="#contact" onclick="loadMain('Дисциплины')" >Дисциплины</a></li>
-                <li><a href="#contact" onclick="loadMain('Уч. план')" >Уч. план</a></li>
-                <li><a href="#contact" onclick="loadMain('Мои работы')" >Мои работы</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
-
 </div>
 <script>
-    function loadMain(s){
 
-        $( "#main" ).load( "registrationLector.jsp body" );
-    }
 </script>
 </body>
 </html>
