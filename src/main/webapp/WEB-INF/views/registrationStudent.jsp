@@ -17,9 +17,12 @@
 
     <div class="col-sm-2 col-md-3"></div>
     <div id="textReg" class="col-xs-12 col-sm-8 col-md-6">
+        <div >
+            <style id="resultRegistrationStyle" type="text/css"></style>
+            <h2 id="resultRegistration" ></h2>
+        </div>
         <form  id="userForm" class="form-horizontal">
             <h4>Введите пожалуйста данные для регистрации студента</h4>
-
             <div>
                 <label>Фамилия</label>
                 <input type="txt" class="form-control" id="lastName"  placeholder="Фамилия"/>
@@ -143,6 +146,7 @@
                 console.log("SUCCESS: ", data);
                 display(data,"#feedback");
                 display(student,"#json");
+                displayeResultReg(data);
             },
             error : function(e) {
                 console.log("ERROR: ", e);
@@ -177,6 +181,16 @@
             $('#alertPas').text("");
             $('#colorAlertPas').text("");
             return true;
+        }
+    }
+
+    function displayeResultReg(data){
+        $("#resultRegistration").text(data.msg);
+        if(data.msg == "студен успешно зарегестрирован"){
+            $("#resultRegistrationStyle").text("#resultRegistration{color:green;}");
+        }
+        else{
+            $("#resultRegistrationStyle").text("#resultRegistration{color:green;}");
         }
     }
 </script>
