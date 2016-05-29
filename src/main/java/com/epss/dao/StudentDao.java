@@ -10,4 +10,6 @@ public interface StudentDao {
     public void saveStudent(Student student);
 
     public Student getStudentByRecordBook(int number);
+
+    public Student getStudentByLogin(String login);
 }

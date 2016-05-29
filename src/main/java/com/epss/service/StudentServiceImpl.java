@@ -44,6 +44,11 @@ public class StudentServiceImpl implements StudentService{
         return groupDao.getGroupList();
     }
 
+    @Override
+    public StudentRegistrationDto getStudentByLogin(String login) {
+        return new StudentRegistrationDto(studentDao.getStudentByLogin(login),userService.findByLogin(login));
+    }
+
     private boolean canAddStudent(String login, int recordBookNumber) {
         return userService.isLoginExists(login)&&studentDao.getStudentByRecordBook(recordBookNumber)==null;
     }

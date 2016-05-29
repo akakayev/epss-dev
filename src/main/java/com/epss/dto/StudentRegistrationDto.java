@@ -1,6 +1,7 @@
 package com.epss.dto;
 
 
+import com.epss.model.Student;
 import com.epss.model.User;
 
 import javax.persistence.Column;
@@ -12,6 +13,14 @@ public class StudentRegistrationDto {
     private Byte semester;
     private Integer group;
     private User user;
+
+    public StudentRegistrationDto(){}
+    public StudentRegistrationDto(Student student, User user){
+        this.user=user;
+        this.recordBookNumber=student.getRecordBookNumber();
+        this.semester=student.getSemester();
+        this.group=student.getGroup();
+    }
 
     public Integer getRecordBookNumber() {
         return recordBookNumber;

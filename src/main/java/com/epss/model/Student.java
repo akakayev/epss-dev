@@ -11,6 +11,8 @@ import java.io.Serializable;
 @Table(name = "STUDENTS")
 public class Student implements Serializable {
 
+    public Student(){}
+
     public Student(StudentRegistrationDto studentRegistrationDto){
         this.recordBookNumber=studentRegistrationDto.getRecordBookNumber();
         this.group= studentRegistrationDto.getGroup();

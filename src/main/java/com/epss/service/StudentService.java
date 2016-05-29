@@ -11,4 +11,6 @@ public interface StudentService {
     public void saveStudent(StudentRegistrationDto student);
 
     public List<Group> getGroupList();
+
+    public StudentRegistrationDto getStudentByLogin(String login);
 }
