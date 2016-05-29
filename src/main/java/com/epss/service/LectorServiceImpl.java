@@ -2,6 +2,7 @@ package com.epss.service;
 
 import com.epss.dao.LectorDao;
 import com.epss.dto.LectorRegistrationDto;
+import com.epss.exceptions.SuchUserExistsException;
 import com.epss.model.Lector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class LectorServiceImpl implements LectorService{
     private LectorDao lectorDao;
 
     @Override
-    public void saveLector(LectorRegistrationDto lectorRegistrationDto) {
+    public void saveLector(LectorRegistrationDto lectorRegistrationDto) throws SuchUserExistsException{
         String login=lectorRegistrationDto.getUser().getLogin();
         System.out.println(login);
         if(canAddLector(login)){
@@ -29,7 +30,12 @@ public class LectorServiceImpl implements LectorService{
             lector.setUserId(userId);
             lectorDao.saveLector(lector);
         }
+        else{
+            throw new SuchUserExistsException();
+        }
     }
+
+
 
     @Override
     public LectorRegistrationDto getLectorByLogin(String login) {

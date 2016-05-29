@@ -190,8 +190,8 @@
     }
 
     function displayeResultReg(data){
-        $("#resultRegistration").text(data.msg);
-        if(data.msg == "преподаватель успешно зарегестрирован"){
+        $("#resultRegistration").text(data.message);
+        if(data.message == "преподаватель успешно зарегестрирован"){
             $("#resultRegistrationStyle").text("#resultRegistration{color:green;}");
         }
         else{

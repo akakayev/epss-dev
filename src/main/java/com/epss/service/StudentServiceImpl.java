@@ -4,6 +4,7 @@ import com.epss.dao.GroupDao;
 import com.epss.dao.StudentDao;
 import com.epss.dao.UserDao;
 import com.epss.dto.StudentRegistrationDto;
+import com.epss.exceptions.SuchUserExistsException;
 import com.epss.model.Group;
 import com.epss.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class StudentServiceImpl implements StudentService{
     private UserService userService;
 
     @Override
-    public void saveStudent(StudentRegistrationDto studentDto) {
+    public void saveStudent(StudentRegistrationDto studentDto) throws SuchUserExistsException{
         int recordBookNumber=studentDto.getRecordBookNumber();
         String login=studentDto.getUser().getLogin();
         System.out.println(login);
@@ -36,6 +37,9 @@ public class StudentServiceImpl implements StudentService{
             Student stusent= new Student(studentDto);
             stusent.setUserId(userId);
             studentDao.saveStudent(stusent);
+        }
+        else{
+            throw new SuchUserExistsException();
         }
     }
 
