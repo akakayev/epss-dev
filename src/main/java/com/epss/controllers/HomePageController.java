@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
@@ -30,7 +31,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @RequestMapping("/")
 @SessionAttributes("roles")
 public class HomePageController {
-
 
 
     @Autowired
@@ -52,19 +52,19 @@ public class HomePageController {
     /**
      * This method will list all existing users.
      */
-    @RequestMapping(value = { "/", "/list" }, method = RequestMethod.GET)
-    public String listUsers(ModelMap model) {
+    @RequestMapping(value = {"/"}, method = RequestMethod.GET)
+    public String openCabinet(ModelMap model) {
 
         List<User> users = userService.findAllUsers();
         model.addAttribute("users", users);
         model.addAttribute("loggedinuser", getPrincipal());
-        return "userslist";
+        return resolveCabinetUrl();
     }
 
     /**
      * This method will provide the medium to add a new user.
      */
-    @RequestMapping(value = { "/newuser" }, method = RequestMethod.GET)
+    @RequestMapping(value = {"/newuser"}, method = RequestMethod.GET)
     public String newUser(ModelMap model) {
         User user = new User();
         model.addAttribute("user", user);
@@ -77,7 +77,7 @@ public class HomePageController {
      * This method will be called on form submission, handling POST request for
      * saving user in database. It also validates the user input
      */
-    @RequestMapping(value = { "/newuser" }, method = RequestMethod.POST)
+    @RequestMapping(value = {"/newuser"}, method = RequestMethod.POST)
     public String saveUser(@Valid User user, BindingResult result,
                            ModelMap model) {
 
@@ -86,22 +86,22 @@ public class HomePageController {
         }
 
 		/*
-		 * Preferred way to achieve uniqueness of field [sso] should be implementing custom @Unique annotation
+         * Preferred way to achieve uniqueness of field [sso] should be implementing custom @Unique annotation
 		 * and applying it on field [sso] of Model class [User].
 		 *
 		 * Below mentioned peace of code [if block] is to demonstrate that you can fill custom errors outside the validation
 		 * framework as well while still using internationalized messages.
 		 *
 		 */
-        if(!userService.isUserLoginUnique(user.getId(), user.getLogin())){
-            FieldError ssoError =new FieldError("user","ssoId",messageSource.getMessage("non.unique.ssoId", new String[]{user.getLogin()}, Locale.getDefault()));
+        if (!userService.isUserLoginUnique(user.getId(), user.getLogin())) {
+            FieldError ssoError = new FieldError("user", "ssoId", messageSource.getMessage("non.unique.ssoId", new String[]{user.getLogin()}, Locale.getDefault()));
             result.addError(ssoError);
             return "registration";
         }
 
 //        userService.saveUser(user);
 
-        model.addAttribute("success", "User " + user.getFirstName() + " "+ user.getLastName() + " registered successfully");
+        model.addAttribute("success", "User " + user.getFirstName() + " " + user.getLastName() + " registered successfully");
         model.addAttribute("loggedinuser", getPrincipal());
         //return "success";
         return "registrationsuccess";
@@ -111,7 +111,7 @@ public class HomePageController {
     /**
      * This method will provide the medium to update an existing user.
      */
-    @RequestMapping(value = { "/edit-user-{ssoId}" }, method = RequestMethod.GET)
+    @RequestMapping(value = {"/edit-user-{ssoId}"}, method = RequestMethod.GET)
     public String editUser(@PathVariable String ssoId, ModelMap model) {
         User user = userService.findByLogin(ssoId);
         model.addAttribute("user", user);
@@ -124,7 +124,7 @@ public class HomePageController {
      * This method will be called on form submission, handling POST request for
      * updating user in database. It also validates the user input
      */
-    @RequestMapping(value = { "/edit-user-{ssoId}" }, method = RequestMethod.POST)
+    @RequestMapping(value = {"/edit-user-{ssoId}"}, method = RequestMethod.POST)
     public String updateUser(@Valid User user, BindingResult result,
                              ModelMap model, @PathVariable String ssoId) {
 
@@ -142,7 +142,7 @@ public class HomePageController {
 
         userService.updateUser(user);
 
-        model.addAttribute("success", "User " + user.getFirstName() + " "+ user.getLastName() + " updated successfully");
+        model.addAttribute("success", "User " + user.getFirstName() + " " + user.getLastName() + " updated successfully");
         model.addAttribute("loggedinuser", getPrincipal());
         return "registrationsuccess";
     }
@@ -151,7 +151,7 @@ public class HomePageController {
     /**
      * This method will delete an user by it's SSOID value.
      */
-    @RequestMapping(value = { "/delete-user-{ssoId}" }, method = RequestMethod.GET)
+    @RequestMapping(value = {"/delete-user-{ssoId}"}, method = RequestMethod.GET)
     public String deleteUser(@PathVariable String ssoId) {
         userService.deleteUserByLogin(ssoId);
         return "redirect:/list";
@@ -184,7 +184,7 @@ public class HomePageController {
         if (isCurrentAuthenticationAnonymous()) {
             return "login";
         } else {
-            return "redirect:/list";
+            return "redirect:/";
         }
     }
 
@@ -192,10 +192,10 @@ public class HomePageController {
      * This method handles logout requests.
      * Toggle the handlers if you are RememberMe functionality is useless in your app.
      */
-    @RequestMapping(value="/logout", method = RequestMethod.GET)
-    public String logoutPage (HttpServletRequest request, HttpServletResponse response){
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null){
+        if (auth != null) {
             //new SecurityContextLogoutHandler().logout(request, response, auth);
             persistentTokenBasedRememberMeServices.logout(request, response, auth);
             SecurityContextHolder.getContext().setAuthentication(null);
@@ -206,16 +206,26 @@ public class HomePageController {
     /**
      * This method returns the principal[user-name] of logged-in user.
      */
-    private String getPrincipal(){
+    private String getPrincipal() {
         String userName = null;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if (principal instanceof UserDetails) {
-            userName = ((UserDetails)principal).getUsername();
+            userName = ((UserDetails) principal).getUsername();
         } else {
             userName = principal.toString();
         }
         return userName;
+    }
+
+    private String resolveCabinetUrl() {
+        System.out.println("\n"+SecurityContextHolder.getContext().getAuthentication().getAuthorities()+"\n");
+
+        if (SecurityContextHolder.getContext().getAuthentication().getAuthorities().contains(new SimpleGrantedAuthority("ROLE_STUDENT")))
+            return "redirect:/student/cabinet";
+        else if (SecurityContextHolder.getContext().getAuthentication().getAuthorities().contains(new SimpleGrantedAuthority("ROLE_LECTOR")))
+            return "redirect:/lector/cabinet";
+        else return "redirect:/Access_Denied";
     }
 
     /**
