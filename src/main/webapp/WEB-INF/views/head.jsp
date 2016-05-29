@@ -26,9 +26,13 @@
         <a class="navbar-brand" href="<c:url value='/login' />">Система поддержки учебного процесса</a>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="#">Об университете</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Зарегистрированные университеты<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">СевГУ</a></li>
+                        <li><a href="#">КФУ</a></li>
+                    </ul>
+                </li>
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -37,6 +41,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="<c:url value='/registrationStudent' />" >Регитрация студента</a></li>
                         <li><a href="<c:url value='/registrationLector' />">Регистрация для преподавателя</a></li>
+                        <li><a href="#">Регистрация учебного заведения</a></li>
                     </ul>
                 </li>
             </ul>
