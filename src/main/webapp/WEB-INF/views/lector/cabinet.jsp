@@ -1,16 +1,13 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Артём
-  Date: 22.05.2016
-  Time: 14:01
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page isELIgnored="false" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>lector page</title>
 </head>
 <body>
-
+${lector.user.firstName}
+${lector.position}
 </body>
 </html>

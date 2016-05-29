@@ -10,6 +10,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "LECTORS")
 public class Lector {
 
+    public Lector(){}
     public Lector(LectorRegistrationDto lectorRegistrationDto){
         this.degree=lectorRegistrationDto.getDegree();
         this.departmentId=lectorRegistrationDto.getDepartmentId();

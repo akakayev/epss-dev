@@ -6,4 +6,6 @@ import com.epss.model.Lector;
 public interface LectorService {
 
     public void saveLector(LectorRegistrationDto lector);
+
+    public LectorRegistrationDto getLectorByLogin(String login);
 }

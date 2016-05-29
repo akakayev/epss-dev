@@ -1,5 +1,6 @@
 package com.epss.dto;
 
+import com.epss.model.Lector;
 import com.epss.model.User;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -15,6 +16,13 @@ public class LectorRegistrationDto {
     private Integer userId;
     private User user;
 
+    public LectorRegistrationDto(){}
+    public LectorRegistrationDto(Lector lector, User user){
+        this.user=user;
+        this.degree=lector.getDegree();
+        this.position=lector.getPosition();
+        this.userId=lector.getUserId();
+    }
     public String getDegree() {
         return degree;
     }

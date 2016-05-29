@@ -31,6 +31,11 @@ public class LectorServiceImpl implements LectorService{
         }
     }
 
+    @Override
+    public LectorRegistrationDto getLectorByLogin(String login) {
+        return new LectorRegistrationDto(lectorDao.getLectorByLogin(login),userService.findByLogin(login));
+    }
+
     private boolean canAddLector(String login) {
         return userService.isLoginExists(login);
     }
