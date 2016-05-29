@@ -185,8 +185,8 @@
     }
 
     function displayeResultReg(data){
-        $("#resultRegistration").text(data.msg);
-        if(data.msg == "студен успешно зарегестрирован"){
+        $("#resultRegistration").text(data.message);
+        if(data.message == "студен успешно зарегестрирован"){
             $("#resultRegistrationStyle").text("#resultRegistration{color:green;}");
         }
         else{
