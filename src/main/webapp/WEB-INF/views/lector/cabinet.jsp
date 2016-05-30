@@ -48,15 +48,14 @@
 
     <div class="col-sm-1 col-md-2"></div>
     <div id="textReg" class="col-xs-12 col-sm-8 col-md-8">
-        <div >
-            <style id="resultRegistrationStyle" type="text/css"></style>
-            <h2 id="resultRegistration" ></h2>
-        </div>
         <div>
             <label>_</label>
         </div>
         <div>
             <label>_</label>
+        </div>
+        <div>
+            <h3>Кабинет преподавателя</h3>
         </div>
         <div class="hidden-xs col-sm-5 col-md-5">
             <img src="<c:url value='/static/img/photo.jpg'/>"/>

@@ -353,12 +353,13 @@ DROP TABLE IF EXISTS `lectors`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `lectors` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `degree` varchar(45) DEFAULT NULL,
   `position` varchar(45) NOT NULL,
   `department_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `department_idx` (`department_id`),
   KEY `lector_idx` (`user_id`),
   CONSTRAINT `lector_department` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
