@@ -20,4 +20,9 @@ public class UniversityServiceImpl implements UniversityService{
     public List<Department> getDepartmentsList() {
         return departmentDao.getDepartmentsList();
     }
+
+    @Override
+    public Department getDepartmentById(int id) {
+        return departmentDao.getDepartmentById(id);
+    }
 }

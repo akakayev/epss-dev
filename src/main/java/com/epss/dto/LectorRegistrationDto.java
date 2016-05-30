@@ -2,16 +2,13 @@ package com.epss.dto;
 
 import com.epss.model.Lector;
 import com.epss.model.User;
-import org.hibernate.validator.constraints.NotEmpty;
-
-import javax.persistence.Column;
-import javax.validation.constraints.NotNull;
 
 
 public class LectorRegistrationDto {
 
     private String degree;
     private  String position;
+    private String departmentName;
     private Integer departmentId;
     private Integer userId;
     private User user;
@@ -23,6 +20,15 @@ public class LectorRegistrationDto {
         this.position=lector.getPosition();
         this.userId=lector.getUserId();
     }
+
+    public Integer getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(Integer departmentId) {
+        this.departmentId = departmentId;
+    }
+
     public String getDegree() {
         return degree;
     }
@@ -39,12 +45,12 @@ public class LectorRegistrationDto {
         this.position = position;
     }
 
-    public Integer getDepartmentId() {
-        return departmentId;
+    public String getDepartmentName() {
+        return departmentName;
     }
 
-    public void setDepartmentId(Integer departmentId) {
-        this.departmentId = departmentId;
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
     }
 
     public Integer getUserId() {

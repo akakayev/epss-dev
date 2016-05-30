@@ -50,7 +50,10 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public StudentRegistrationDto getStudentByLogin(String login) {
-        return new StudentRegistrationDto(studentDao.getStudentByLogin(login),userService.findByLogin(login));
+        Student student= studentDao.getStudentByLogin(login);
+        StudentRegistrationDto studentRegistrationDto=new StudentRegistrationDto(student,userService.findByLogin(login));
+        studentRegistrationDto.setGroupName(groupDao.getGroupById(student.getGroup()).getGroupName());
+        return studentRegistrationDto;
     }
 
     private boolean canAddStudent(String login, int recordBookNumber) {

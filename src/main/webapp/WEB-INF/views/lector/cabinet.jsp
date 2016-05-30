@@ -103,7 +103,7 @@
                 <label>Должност : ${lector.position}</label>
             </div>
             <div>
-                <label>Кафедра университета : ${lector.departmentId}</label>
+                <label>Кафедра университета : ${lector.departmentName}</label>
             </div>
         </div>
         <div class=" hidden-xs col-sm-2 col-md-2">

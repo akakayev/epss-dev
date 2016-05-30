@@ -12,6 +12,7 @@ public class StudentRegistrationDto {
     private Integer recordBookNumber;
     private Byte semester;
     private Integer group;
+    private String groupName;
     private User user;
 
     public StudentRegistrationDto(){}
@@ -20,6 +21,14 @@ public class StudentRegistrationDto {
         this.recordBookNumber=student.getRecordBookNumber();
         this.semester=student.getSemester();
         this.group=student.getGroup();
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 
     public Integer getRecordBookNumber() {

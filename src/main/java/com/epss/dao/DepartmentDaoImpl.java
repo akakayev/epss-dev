@@ -17,4 +17,9 @@ public class DepartmentDaoImpl extends AbstractDao<Integer,Department> implement
                 .addOrder(Order.asc("name"));
         return (List<Department>)cr.list();
     }
+
+    @Override
+    public Department getDepartmentById(int id) {
+        return (Department)getByKey(id);
+    }
 }
