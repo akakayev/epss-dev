@@ -18,6 +18,9 @@ public class LectorServiceImpl implements LectorService{
     @Autowired
     private LectorDao lectorDao;
 
+    @Autowired
+    private UniversityService universityService;
+
     @Override
     public void saveLector(LectorRegistrationDto lectorRegistrationDto) throws SuchUserExistsException{
         String login=lectorRegistrationDto.getUser().getLogin();
@@ -39,7 +42,10 @@ public class LectorServiceImpl implements LectorService{
 
     @Override
     public LectorRegistrationDto getLectorByLogin(String login) {
-        return new LectorRegistrationDto(lectorDao.getLectorByLogin(login),userService.findByLogin(login));
+        Lector lector=lectorDao.getLectorByLogin(login);
+        LectorRegistrationDto lectorRegistrationDto=new LectorRegistrationDto(lector,userService.findByLogin(login));
+        lectorRegistrationDto.setDepartmentName(universityService.getDepartmentById(lector.getDepartmentId()).getName());
+        return lectorRegistrationDto;
     }
 
     private boolean canAddLector(String login) {

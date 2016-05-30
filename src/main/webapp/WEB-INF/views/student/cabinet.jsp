@@ -100,7 +100,7 @@
                 <label>Номер семестра : ${student.semester}</label>
             </div>
             <div>
-                <label>Номер группы : ${student.group}</label>
+                <label>Группа : ${student.groupName}</label>
             </div>
         </div>
         <div class=" hidden-xs col-sm-2 col-md-2">

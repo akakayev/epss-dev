@@ -19,4 +19,9 @@ public class GroupDaoImpl extends AbstractDao<Integer,Group> implements GroupDao
                 .addOrder(Order.asc("groupName"));
         return (List<Group>)cr.list();
     }
+
+    @Override
+    public Group getGroupById(int id) {
+        return (Group)getByKey(id);
+    }
 }

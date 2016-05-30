@@ -8,4 +8,6 @@ import java.util.List;
 public interface GroupDao {
 
     public List<Group> getGroupList();
+
+    public Group getGroupById(int id);
 }
