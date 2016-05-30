@@ -16,7 +16,6 @@
    <th width="100"></th>
 </sec:authorize>
 <%--<%@include file="head.jsp" %>--%>
-
 <div class="list-group">
     <a href="/student/disciplines-disciplines.id" class="list-group-item">disciplines.name</a>
 </div>
