@@ -5,10 +5,11 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "LECTORS")
-public class Lector {
+public class Lector implements Serializable {
 
     public Lector(){}
     public Lector(LectorRegistrationDto lectorRegistrationDto){

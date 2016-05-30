@@ -19,4 +19,9 @@ public class DisciplineServiceImpl implements DisciplineService{
     public List<Discipline> getDisciplinesListForDepartment(int departmentId) {
         return disciplineDao.getDisciplinesListFordDepartment(departmentId);
     }
+
+    @Override
+    public List<Discipline> getDisciplinesWithIds(List<Integer> ids) {
+        return disciplineDao.getDisciplinesWithIds(ids);
+    }
 }

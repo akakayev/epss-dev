@@ -19,4 +19,11 @@ public class DisciplineDaoImpl extends AbstractDao<Integer, Discipline> implemen
                 .addOrder(Order.asc("name"));
         return (List<Discipline>) cr.list();
     }
+
+    @Override
+    public List<Discipline> getDisciplinesWithIds(List<Integer> ids) {
+        Criteria cr = createEntityCriteria().add(Restrictions.in("id",ids))
+                .addOrder(Order.asc("name"));
+        return (List<Discipline>) cr.list();
+    }
 }
