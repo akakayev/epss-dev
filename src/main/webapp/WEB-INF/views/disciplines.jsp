@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page isELIgnored="false" %>
-<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <html>
 <head>
@@ -12,13 +13,29 @@
 </head>
 <body>
 
-<sec:authorize access="hasRole('ADMIN')">
-   <th width="100"></th>
+<sec:authorize access="hasRole('LECTOR')">
+    <%@include file="lector/head.jsp" %>
 </sec:authorize>
-<%--<%@include file="head.jsp" %>--%>
-<div class="list-group">
-    <a href="/student/disciplines-disciplines.id" class="list-group-item">disciplines.name</a>
+<sec:authorize access="hasRole('STUDENT')">
+    <%@include file="student/head.jsp" %>
+</sec:authorize>
+<div>
+    <label>_</label>
 </div>
-
+<div>
+    <label>_</label>
+</div>
+<div class="col-sm-2 col-md-3"></div>
+<div class="col-xs-12 col-sm-8 col-md-6">
+    <div>
+        <h3>Список дисциплин</h3>
+    </div>
+    <div class="list-group">
+        <c:forEach items="${disciplines}" var="discipline">
+            <a href="#/student/disciplines-${discipline.id}" class="list-group-item">${discipline.name}</a>
+        </c:forEach>
+    </div>
+</div>
+<div class="col-sm-2 col-md-3"></div>
 </body>
 </html>

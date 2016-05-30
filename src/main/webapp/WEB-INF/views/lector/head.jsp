@@ -29,7 +29,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="#">Успеваемость</a></li>
                 <li><a href="#about">Расписание</a></li>
-                <li><a href="#contact">Дисциплины</a></li>
+                <li><a href="<c:url value='/lector/disciplines-1' />">Дисциплины</a></li>
                 <li><a href="#contact">Уч. план</a></li>
                 <li><a href="#contact">Мои работы</a></li>
                 <li><a href="<c:url value="/logout" />">Выход</a></li>
