@@ -12,12 +12,18 @@
 </head>
 <body>
 
-<sec:authorize access="hasRole('ADMIN')">
-   <th width="100"></th>
+<sec:authorize access="hasRole('LECTOR')">
+    <%@include file="lector/head.jsp" %>
 </sec:authorize>
+<sec:authorize access="hasRole('STUDENT')">
+    <%@include file="student/head.jsp" %>
+</sec:authorize>
+
 <%--<%@include file="head.jsp" %>--%>
 <div class="list-group">
-    <a href="/student/disciplines-disciplines.id" class="list-group-item">disciplines.name</a>
+    <c:forEach items="${disciplines}" var="discipline">
+        <a href="#/student/disciplines-${discipline.id}" class="list-group-item">${discipline.groupName}</a>
+    </c:forEach>
 </div>
 
 </body>
