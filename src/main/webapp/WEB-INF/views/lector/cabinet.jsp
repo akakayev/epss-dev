@@ -105,6 +105,11 @@
             <div>
                 <label>Кафедра университета : ${lector.departmentName}</label>
             </div>
+            <div class="list-group">
+                <c:forEach items="${disciplines}" var="discipline">
+                    <a href="#/student/disciplines-${discipline.id}" class="list-group-item">${discipline.name}</a>
+                </c:forEach>
+            </div>
         </div>
         <div class=" hidden-xs col-sm-2 col-md-2">
             <div><small>День недели: </small><h3 class = "day"></h3></div>
