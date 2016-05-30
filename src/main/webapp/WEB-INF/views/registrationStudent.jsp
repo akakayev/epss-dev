@@ -159,7 +159,7 @@
                 console.log("SUCCESS: ", data);
                 display(data,"#feedback");
                 display(student,"#json");
-                displayeResultReg(data);
+                displayRezultRegistration(data);
             },
             error : function(e) {
                 console.log("ERROR: ", e);
@@ -182,7 +182,7 @@
         $(id).html(json);
     }
 
-    function checkPassword(){
+    function checkInput(){
         var pas = $('#password').val();
         var rPas = $('#repetPassword').val();
         if((pas != rPas)&(pas != "")){
@@ -197,8 +197,7 @@
         }
     }
 
-    function displayeResultReg(data){
-        $("#resultRegistration").text(data.msg);
+    function displayRezultRegistration(data){
         if(data.success == false){
             $('#loginStyle').text(" #login{border-color: #ff0000 ;}");
             $('#recordBookNumberStyle').text("#recordBookNumber{border-color: #ff0000 ;}");
