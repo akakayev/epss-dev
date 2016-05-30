@@ -6,8 +6,9 @@ import com.epss.model.User;
 
 public class LectorRegistrationDto {
 
+    private Integer id;
     private String degree;
-    private  String position;
+    private String position;
     private String departmentName;
     private Integer departmentId;
     private Integer userId;
@@ -19,6 +20,7 @@ public class LectorRegistrationDto {
         this.degree=lector.getDegree();
         this.position=lector.getPosition();
         this.userId=lector.getUserId();
+        this.id=lector.getId();
     }
 
     public Integer getDepartmentId() {
@@ -67,5 +69,13 @@ public class LectorRegistrationDto {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

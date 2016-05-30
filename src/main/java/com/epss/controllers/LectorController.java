@@ -30,6 +30,8 @@ public class LectorController {
     @RequestMapping(value = { "/lector", "/lector/cabinet" }, method = RequestMethod.GET)
     public String lector(ModelMap model) {
 
+        System.out.println(lectorService.getDisciplineListForLector(lectorService.getLectorByLogin(getPrincipal()).getId()));
+        model.addAttribute("disciplines",lectorService.getDisciplineListForLector(lectorService.getLectorByLogin(getPrincipal()).getId()));
         model.addAttribute("lector",lectorService.getLectorByLogin(getPrincipal()));
         return "lector/cabinet";
     }

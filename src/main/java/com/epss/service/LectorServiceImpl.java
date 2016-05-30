@@ -1,12 +1,16 @@
 package com.epss.service;
 
 import com.epss.dao.LectorDao;
+import com.epss.dao.LectorDisciplineDao;
 import com.epss.dto.LectorRegistrationDto;
 import com.epss.exceptions.SuchUserExistsException;
+import com.epss.model.Discipline;
 import com.epss.model.Lector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service("lectorService")
 @Transactional
@@ -20,6 +24,11 @@ public class LectorServiceImpl implements LectorService{
 
     @Autowired
     private UniversityService universityService;
+
+    @Autowired
+    private LectorDisciplineDao lectorDisciplineDao;
+    @Autowired
+    private DisciplineService disciplineService;
 
     @Override
     public void saveLector(LectorRegistrationDto lectorRegistrationDto) throws SuchUserExistsException{
@@ -46,6 +55,13 @@ public class LectorServiceImpl implements LectorService{
         LectorRegistrationDto lectorRegistrationDto=new LectorRegistrationDto(lector,userService.findByLogin(login));
         lectorRegistrationDto.setDepartmentName(universityService.getDepartmentById(lector.getDepartmentId()).getName());
         return lectorRegistrationDto;
+    }
+
+    @Override
+    public List<Discipline> getDisciplineListForLector(int id) {
+        List<Integer> ids=lectorDisciplineDao.getDisciplinesIdsForLector(id);
+        List<Discipline> disciplines=disciplineService.getDisciplinesWithIds(ids);
+        return disciplines;
     }
 
     private boolean canAddLector(String login) {

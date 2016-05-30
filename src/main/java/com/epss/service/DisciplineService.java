@@ -8,4 +8,6 @@ import java.util.List;
 public interface DisciplineService {
 
     public List<Discipline> getDisciplinesListForDepartment(int departmentId);
+
+    List<Discipline> getDisciplinesWithIds(List<Integer> ids);
 }
