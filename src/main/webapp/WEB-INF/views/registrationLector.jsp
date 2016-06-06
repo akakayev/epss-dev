@@ -200,10 +200,9 @@
     }
 
     function displayRezultRegistration(data){
+        $('#modal').text(data.message);
         if(data.success == false){
-            alert(data.success);
             $('#loginStyle').text(" #login{border-color: #ff0000 ;}");
-            $('#modal').text(data.message);
         }
         else{
             $('#loginStyle').text(" #login{border-color: #ccc ;}");

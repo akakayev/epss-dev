@@ -198,10 +198,10 @@
     }
 
     function displayRezultRegistration(data){
+        $('#modal').text(data.message);
         if(data.success == false){
             $('#loginStyle').text(" #login{border-color: #ff0000 ;}");
             $('#recordBookNumberStyle').text("#recordBookNumber{border-color: #ff0000 ;}");
-            $('#modal').text(data.message);
         }
         else{
             $('#loginStyle').text(" #login{border-color: #ccc ;}");

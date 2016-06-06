@@ -15,9 +15,9 @@ public class DisciplineController {
 
     @Autowired
     private StudentService studentService;
-    @RequestMapping(value = { "/disciplinePlan" }, method = RequestMethod.GET)
+    @RequestMapping(value = { "/discipline" }, method = RequestMethod.GET)
     public String listUsers(ModelMap model) {
         model.addAttribute("groups",studentService.getGroupList());
-        return "/disciplinePlan";
+        return "/discipline";
     }
 }
