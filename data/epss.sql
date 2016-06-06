@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `epss` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `epss`;
 -- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: epss
@@ -310,7 +308,7 @@ CREATE TABLE `institutions` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `institutions`
+-- Table structure for table `lector_discipline`
 --
 
 LOCK TABLES `institutions` WRITE;
@@ -326,7 +324,7 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `lector_descipline`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `lector_descipline` (
+CREATE TABLE `lector_discipline` (
   `lector_id` int(11) NOT NULL,
   `discipline_id` int(11) NOT NULL,
   PRIMARY KEY (`lector_id`,`discipline_id`),
@@ -364,7 +362,7 @@ CREATE TABLE `lectors` (
   KEY `lector_idx` (`user_id`),
   CONSTRAINT `lector_department` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `lector_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -553,10 +551,10 @@ CREATE TABLE `shedule` (
   UNIQUE KEY `class_name_UNIQUE` (`class_name`),
   UNIQUE KEY `class_number_UNIQUE` (`class_number`),
   UNIQUE KEY `time_UNIQUE` (`time`),
-  UNIQUE KEY `lector_id_UNIQUE` (`lector_id`),
   UNIQUE KEY `week_UNIQUE` (`week`),
   UNIQUE KEY `house_id_UNIQUE` (`housing_id`),
-  CONSTRAINT `class_lector` FOREIGN KEY (`lector_id`) REFERENCES `lectors` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  KEY `class-lector_idx` (`lector_id`),
+  CONSTRAINT `class-lector` FOREIGN KEY (`lector_id`) REFERENCES `lectors` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `group_class` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `housing_id` FOREIGN KEY (`housing_id`) REFERENCES `housings` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -731,4 +729,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-28 11:45:32
+-- Dump completed on 2016-06-06 20:41:56
