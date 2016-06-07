@@ -8,9 +8,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>User Registration Form</title>
     <link href="<c:url value='/static/css/bootstrap.css' />" rel="stylesheet"/>
+    <link href="<c:url value='/static/css/mycss.css' />" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css" />
     <script src="<c:url value='/static/js/jquery-2.2.3.js'/>"></script>
-    <%--<script src="<c:url value='/static/js/bootstrap.js'/>"></script>--%>
+
 </head>
 
 <body>
@@ -82,7 +83,6 @@
                 <div>
                 <label>Группа</label>
                 <select id="group" path="group" class="form-control">
-                    //TODO: вывести список групп, полученный с сервера
                     <c:forEach items="${groups}" var="group">
                     <option value="${group.id}">${group.groupName}</option>
                     </c:forEach>
@@ -125,7 +125,7 @@
             enableSearchButton(false);
             event.preventDefault();
             if(checkPassword()==true){
-                searchViaAjax();
+                studentRegAjax();
             }
 
 
@@ -134,7 +134,7 @@
     });
 
 
-    function searchViaAjax() {
+    function studentRegAjax() {
 
         var user = {};
         user["firstName"] = $("#firstName").val();

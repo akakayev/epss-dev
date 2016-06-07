@@ -23,7 +23,7 @@
                 <span class="icon-bar"></span>
             </button>
         </div>
-        <a class="navbar-brand" href="<c:url value='/login' />">Система поддержки учебного процесса</a>
+        <a class="navbar-brand" href="<c:url value='/login' />"> Система поддержки учебного процесса</a>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li>
@@ -41,7 +41,9 @@
                     <ul class="dropdown-menu">
                         <li><a href="<c:url value='/registrationStudent' />" >Регитрация студента</a></li>
                         <li><a href="<c:url value='/registrationLector' />">Регистрация для преподавателя</a></li>
-                        <li><a href="#">Регистрация учебного заведения</a></li>
+                        <li><a href="<c:url value='/registrationUniversity' />">Регистрация учебного заведения</a></li>
+                        <li><a href="<c:url value='/registrationFaculty' />">Регистрация института/факультета</a></li>
+                        <li><a href="<c:url value='/registrationDepartment' />">Регистрация кафедры</a></li>
                     </ul>
                 </li>
             </ul>

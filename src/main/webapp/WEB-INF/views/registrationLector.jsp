@@ -125,7 +125,7 @@
             event.preventDefault();
 
             if(checkPassword()==true){
-                searchViaAjax();
+                lectorRegAjax();
             }
 
 
@@ -133,7 +133,7 @@
 
     });
 
-    function searchViaAjax() {
+    function lectorRegAjax(){
 
         var user = {};
         user["firstName"] = $("#firstName").val();
