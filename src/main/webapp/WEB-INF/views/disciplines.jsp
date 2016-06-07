@@ -31,11 +31,9 @@
         <h3>Список дисциплин</h3>
     </div>
     <div class="list-group">
-        <p>1 дисциплина</p>
-        <a href="<c:url value="/discipline" />">Дисциплина</a>
-        <%--<c:forEach items="${disciplines}" var="discipline">--%>
-            <%--<a href="#/student/disciplines-${discipline.id}" class="list-group-item">${discipline.name}</a>--%>
-        <%--</c:forEach>--%>
+        <c:forEach items="${disciplines}" var="discipline">
+            <a href="#/student/discipline-${discipline.id}" class="list-group-item">${discipline.name}</a>
+        </c:forEach>
     </div>
 </div>
 <div class="col-sm-2 col-md-3"></div>

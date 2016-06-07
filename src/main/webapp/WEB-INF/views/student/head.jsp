@@ -30,8 +30,8 @@
                 <li class=><a href="#">Успеваемость</a></li>
                 <li><a href="#about">Расписание</a></li>
                 <li><a href="<c:url value='/student/disciplines-1' />">Дисциплины</a></li>
-                <li><a href="#contact">Уч. план</a></li>
-                <li><a href="#contact">Мои работы</a></li>
+                <li><a href="#">Уч. план</a></li>
+                <li><a href="#1">Мои работы</a></li>
                 <li><a href="<c:url value='/student/recordBook' />">Электронная зачетка</a></li>
                 <li><a href="<c:url value="/logout" />">Выход</a></li>
             </ul>
