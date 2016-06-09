@@ -43,10 +43,6 @@
                 </select>
             </div>
             <div>
-                <label>Сведенья о декане</label>
-                <input type="txt" class="form-control" id="rectorName" placeholder="Сведенья о декане" required/>
-            </div>
-            <div>
                 <label>Краткое описание института/факультета</label>
                 <textarea class="form-control" id="shortDescription" rows="5" placeholder="Краткое описание учебного заведения"></textarea>
             </div>

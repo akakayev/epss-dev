@@ -27,7 +27,7 @@
         </form>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class=><a href="#">Успеваемость</a></li>
+                <li><a href="<c:url value='/student/cabinet'/>">Кабинет студента</a></li>
                 <li><a href="#about">Расписание</a></li>
                 <li><a href="<c:url value='/student/disciplines-1' />">Дисциплины</a></li>
                 <li><a href="#">Уч. план</a></li>

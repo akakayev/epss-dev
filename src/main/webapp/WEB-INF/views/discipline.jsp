@@ -2,12 +2,12 @@
 <%@ page isELIgnored="false" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <html>
 <head>
     <title>План дисциплины</title>
     <link href="<c:url value='/static/css/bootstrap.css' />" rel="stylesheet"/>
+    <link href="<c:url value='/static/css/mycss.css' />" rel="stylesheet"/>
     <script src="<c:url value='/static/js/jquery-2.2.3.js'/>"></script>
     <script src="<c:url value='/static/js/bootstrap.js'/>"></script>
     <script>
@@ -38,6 +38,10 @@
 
     <div class="tab-content">
         <div id="panel1" class="tab-pane fade in active">
+
+            <div class ="tabBelow">
+                <a href="<c:url value='/work' />" class=" btn btn-default">Создать работу</a>
+            </div>
             <table class="table">
                 <thead>
                 <tr>
@@ -62,20 +66,9 @@
             </table>
         </div>
         <div id="panel2" class="tab-pane fade">
-            <form action="" method="post" enctype="multipart/form-data">
-
-                <div class="form-group">
-                    <div>
-                        <p></p>
-                        <input type="file" class=" btn btn-default" title="Search for a file to add">
+                    <div class ="tabBelow">
+                        <a href="<c:url value='/work' />" class=" btn btn-default">Создать работу</a>
                     </div>
-                    <div>
-                        <p></p>
-                        <input type="submit" class=" btn btn-default" id="loadFile" value="Создать работу">
-                    </div>
-
-                </div>
-            </form>
             <table class="table">
                 <thead>
                 <tr>

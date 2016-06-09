@@ -35,10 +35,6 @@
                 </select>
             </div>
             <div>
-                <label>Сведенья о ректоре</label>
-                <input type="txt" class="form-control" id="rectorName" placeholder="Сведенья о ректоре" required/>
-            </div>
-            <div>
                 <label>Краткое описание  учебного заведения</label>
                 <textarea class="form-control" id="shortDescription" rows="5" placeholder="Краткое описание учебного заведения"></textarea>
             </div>

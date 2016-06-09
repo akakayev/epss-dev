@@ -16,7 +16,14 @@
     <div id="textReg" class="col-xs-12 col-sm-8 col-md-6">
         <form id="universityForm">
             <h4>Введите пожалуйста данные для регистрации кафедры</h4>
-
+            <div>
+                <label>Университет</label>
+                <select id="university" path="faculty" class="form-control">
+                    <%--<c:forEach items="${institutions}" var="institution">--%>
+                    <%--<option value="${institution.id}">${institution.abbreviation}</option>--%>
+                    <%--</c:forEach>--%>
+                </select>
+            </div>
             <div>
                 <label>институт/факультет</label>
                 <select id="faculty" path="faculty" class="form-control">
@@ -34,10 +41,6 @@
             <div>
                 <label>Аббревиатура</label>
                 <input type="txt" class="form-control errorReg" id="abbreviation" placeholder="Аббревиатура" required/>
-            </div>
-            <div>
-                <label>Сведенья о заведующем кафедры</label>
-                <input type="txt" class="form-control" id="rectorName" placeholder="Сведенья о заведующем кафедры" required/>
             </div>
             <div>
                 <label>Краткое описание института/факультета</label>
@@ -139,6 +142,40 @@
             $('#abbreviation').css(" #errorReg{border-color: #ccc ;}");
         }
     }
+
+
+    jQuery(document).ready(function ($) {
+        $("#faculty").change(function (event) {
+            setIdUniversity($("#university").val());
+        });
+    });
+
+    function setIdUniversity(id){
+        var university = {};
+        university["id"] = id;
+        $.ajax({
+            type : "POST",
+            contentType : "application/json",
+            url : "/epss/",
+            data : JSON.stringify(university),
+            dataType : 'json',
+            timeout : 100000,
+            success : function(data) {
+                console.log("SUCCESS: ", lector);
+                console.log("SUCCESS: ", data);
+                // alert(data.message);
+            },
+            error : function(e) {
+                console.log("ERROR: ", e);
+
+            },
+            done : function(e) {
+                console.log("DONE");
+                enableSearchButton(true);
+            }
+        });
+    }
+
 
 </script>
 </body>
