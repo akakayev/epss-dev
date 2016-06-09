@@ -1,4 +1,4 @@
-package com.epss.controllers;
+package com.epss.dto;
 
 import com.fasterxml.jackson.annotation.JsonView;
 

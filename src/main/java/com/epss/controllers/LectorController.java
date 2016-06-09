@@ -16,17 +16,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @SessionAttributes("roles")
 public class LectorController {
 
-    @Autowired
-    private UniversityService universityService;
 
     @Autowired
     private LectorService lectorService;
 
-    @RequestMapping(value = { "/registrationLector"}, method = RequestMethod.GET)
-    public String listUsers(ModelMap model) {
-        model.addAttribute("departments",universityService.getDepartmentsList());
-        return "registrationLector";
-    }
     @RequestMapping(value = { "/lector", "/lector/cabinet" }, method = RequestMethod.GET)
     public String lector(ModelMap model) {
 

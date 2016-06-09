@@ -1,7 +1,7 @@
 package com.epss.controllers.rest;
 
-import com.epss.controllers.RegistrationResponse;
-import com.epss.controllers.Views;
+import com.epss.dto.RegistrationResponse;
+import com.epss.dto.Views;
 import com.epss.dto.LectorRegistrationDto;
 import com.epss.exceptions.SuchUserExistsException;
 import com.epss.service.LectorService;

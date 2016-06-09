@@ -1,8 +1,6 @@
 package com.epss.model;
 
 
-import com.epss.controllers.Views;
-import com.fasterxml.jackson.annotation.JsonView;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
