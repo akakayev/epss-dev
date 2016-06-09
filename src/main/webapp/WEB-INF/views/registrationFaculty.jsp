@@ -19,9 +19,9 @@
             <div>
                 <label>Учебное заведение</label>
                 <select id="institution" path="group" class="form-control">
-                    <%--<c:forEach items="${institutions}" var="institution">--%>
-                        <%--<option value="${institution.id}">${institution.abbreviation}</option>--%>
-                    <%--</c:forEach>--%>
+                    <c:forEach items="${universiries}" var="institution">
+                        <option value="${institution.id}">${institution.abbreviation}</option>
+                    </c:forEach>
                 </select>
             </div>
 
