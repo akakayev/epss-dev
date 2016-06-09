@@ -51,10 +51,17 @@
         <div class="form-group">
             <label> Выберите вид загрузки файла</label>
             <p><label>
-                <input id = "checkboxLoad" type="checkbox"  checked> Использовать файл / ссылку
-            </label></p>
-            <input type="file"  id="fileLoad" placeholder="выберите файл" required />
-            <input type="txt" class="form-control " id="hrefLoad"  placeholder="Введите ссылку"  disabled="true" required />
+                <form>
+
+                    <label class ="radio-inline">
+                        <input type="radio" name="load" id="r1" checked >
+                        <input type="file"  id="fileLoad" placeholder="выберите файл" required />
+                    </label><Br>
+                    <label class ="radio-inline">
+                        <input type="radio" name="load" id="r2" >
+                        <input type="txt" class="form-control " id="hrefLoad"  placeholder="Введите ссылку"  disabled="true" required />
+                    </label>
+                </form>
         </div>
 
         <button id="submit" id="submit" type="submit" class="btn btn-default" >Создать работу</button>
@@ -64,21 +71,19 @@
 <div class="col-sm-2 col-md-3"></div>
 <script>
     jQuery(document).ready(function($){
-        $("#checkboxLoad").click(function(event){
-            if($("#checkboxLoad").prop("checked")){
-                $('#hrefLoad').prop('disabled', true);
-                $('#fileLoad').prop('disabled', false);
-            }
-            else{
-                $('#hrefLoad').prop('disabled', false);
-                $('#fileLoad').prop('disabled', true);
-            }
+
+        $("#r1").change(function(){
+            $('#hrefLoad').prop('disabled', true);
+            $('#fileLoad').prop('disabled', false);
+        });
+        $("#r2").change(function(){
+            $('#hrefLoad').prop('disabled', false);
+            $('#fileLoad').prop('disabled', true);
         });
 
-        $("#submit").submit(function(event){
-
-        });
     });
+
+
 
     function createWork(){
         var work={};
@@ -113,17 +118,13 @@
         });
     }
 
-    function getData(){
-        var data;
-        if($("#checkboxLoad").prop("checked")){
-            data=$('#fileLoad').val();
-        }
-        else{
-            data=$('#hrefLoad').val();
-        }
-        return data;
-    }
+
 
 </script>
 </body>
 </html>
+<!-- слева список  попыток  в попытки ввести  фреймы и снизу комментарий только для пеподавателя и кнопка
+для ответа студена
+-->
+<!-- список -->
+<!-- мои работы  номер , тема , оценка, делайн -->

@@ -27,3 +27,46 @@ textarea{
 .tabBelow{
 	margin: 5px;
 }
+
+.tab-box:after{
+	clear:both;
+	content:"";
+	display:block;
+}
+.tab-nav{
+	margin:0;
+	padding:0;
+	list-style:none;
+	width:120px;
+	float:left;
+}
+.tab-nav li{
+	float:left;
+	margin-bottom:5px;
+}
+/*.tab-nav li a{*/
+	/*display:inline-block;*/
+	/*width:80px;*/
+	/*padding:5px 10px;*/
+	/*font:normal 12px Arial, Helvetica, sans-serif;*/
+	/*color:#fff;*/
+	/*text-decoration:none;*/
+/*}*/
+/*.tab-nav li a:hover{*/
+	/*color:#fff;*/
+	/*text-decoration:none;*/
+	/*background:#777;*/
+/*}*/
+/*.tab-nav li.select a{*/
+	/*background:#bbb;*/
+/*}*/
+.tab-nav .active{
+	display:inline-block;
+	padding:5px;
+}
+.tab-box>div{
+	margin:0 0 0 100px;
+	padding:10px;
+	border:solid 1px #cccccc;
+	background:#fcfcfc;
+}
