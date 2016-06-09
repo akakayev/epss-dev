@@ -21,7 +21,9 @@
 <div><label>_</label></div>
 <div class="col-sm-2 col-md-3"></div>
 <div id="textReg" class="col-xs-12 col-sm-8 col-md-6">
-
+    <div>
+        <h3>Данные о дисциплине</h3>
+    </div>
     <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" href="#panel1">Полученные сообщения</a></li>
         <li><a data-toggle="tab" href="#panel2">Отправленные сообщения</a></li>

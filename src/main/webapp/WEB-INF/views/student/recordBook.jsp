@@ -19,7 +19,7 @@
     </div>
     <!--  -->
     <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#panel1">1 семестр</a></li>
+        <li><a data-toggle="tab" href="#panel1">1 семестр</a></li>
         <li><a data-toggle="tab" href="#panel2">2 семестр</a></li>
         <li><a data-toggle="tab" href="#panel3">3 семестр</a></li>
         <li><a data-toggle="tab" href="#panel4">4 семестр</a></li>

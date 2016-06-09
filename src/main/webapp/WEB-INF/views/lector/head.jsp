@@ -28,6 +28,7 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="<c:url value='/lector/cabinet'/>">Кабинет преподавателя</a></li>
+                <li><a href="<c:url value='/messages'/>">Сообщения</a></li>
                 <li><a href="#about">Расписание</a></li>
                 <li><a href="<c:url value='/lector/disciplines-1' />">Дисциплины</a></li>
                 <li><a href="#contact">Уч. план</a></li>
