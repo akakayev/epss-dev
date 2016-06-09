@@ -49,8 +49,6 @@ public class LectorServiceImpl implements LectorService{
         }
     }
 
-
-
     @Override
     public LectorRegistrationDto getLectorByLogin(String login) {
         Lector lector=lectorDao.getLectorByLogin(login);

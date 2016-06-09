@@ -302,7 +302,6 @@ CREATE TABLE `institutions` (
   PRIMARY KEY (`id`,`full_name`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `full_name_UNIQUE` (`full_name`),
-  UNIQUE KEY `details_id_UNIQUE` (`details_id`),
   CONSTRAINT `details` FOREIGN KEY (`details_id`) REFERENCES `department_details` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -318,10 +317,10 @@ INSERT INTO `institutions` VALUES (1,'СевГУ','СевГУ',1,'UNIVERSITY');
 UNLOCK TABLES;
 
 --
--- Table structure for table `lector_descipline`
+-- Table structure for table `lector_discipline`
 --
 
-DROP TABLE IF EXISTS `lector_descipline`;
+DROP TABLE IF EXISTS `lector_discipline`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `lector_discipline` (
@@ -335,12 +334,12 @@ CREATE TABLE `lector_discipline` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `lector_descipline`
+-- Dumping data for table `lector_discipline`
 --
 
-LOCK TABLES `lector_descipline` WRITE;
-/*!40000 ALTER TABLE `lector_descipline` DISABLE KEYS */;
-/*!40000 ALTER TABLE `lector_descipline` ENABLE KEYS */;
+LOCK TABLES `lector_discipline` WRITE;
+/*!40000 ALTER TABLE `lector_discipline` DISABLE KEYS */;
+/*!40000 ALTER TABLE `lector_discipline` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
