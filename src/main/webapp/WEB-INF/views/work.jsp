@@ -7,6 +7,7 @@
 <head>
     <title>Создание работы</title>
     <link href="<c:url value='/static/css/bootstrap.css' />" rel="stylesheet"/>
+    <script src="<c:url value='/static/js/jquery-2.2.3.js'/>"></script>
 </head>
 <body>
 <sec:authorize access="hasRole('LECTOR')">
@@ -46,11 +47,82 @@
 
 
 
+        <div class="form-group">
+            <label> Выберите вид загрузки файла</label>
+            <p><label>
+                <input id = "checkboxLoad" type="checkbox"  checked> Использовать файл / ссылку
+            </label></p>
+            <input type="file"  id="fileLoad" placeholder="выберите файл" required />
+            <input type="txt" class="form-control " id="hrefLoad"  placeholder="Введите ссылку"  disabled="true" required />
+        </div>
 
-
+        <button id="submit" id="submit" type="submit" class="btn btn-default" >Создать работу</button>
 
     </form>
 </div>
 <div class="col-sm-2 col-md-3"></div>
+<script>
+    jQuery(document).ready(function($){
+        $("#checkboxLoad").click(function(event){
+            if($("#checkboxLoad").prop("checked")){
+                $('#hrefLoad').prop('disabled', true);
+                $('#fileLoad').prop('disabled', false);
+            }
+            else{
+                $('#hrefLoad').prop('disabled', false);
+                $('#fileLoad').prop('disabled', true);
+            }
+        });
+
+        $("#submit").submit(function(event){
+
+        });
+    });
+
+    function createWork(){
+        var work={};
+
+        work["discipline"] =  $('#discipline').val();
+        work["kindWork"] =  $('#kindWork').val();
+        work["workNumber"] =  $('#workNumber').val();
+        work["themeWork"] =  $('#themeWork').val();
+        work["data"] = getData();
+        console.log("SUCCESS: ", work);
+
+        $.ajax({
+            type : "POST",
+            contentType : "application/json",
+            url : "",
+            data : JSON.stringify(work),
+            dataType : 'json',
+            timeout : 100000,
+            success : function(data) {
+                console.log("SUCCESS: ", data);
+
+
+            },
+            error : function(e) {
+                console.log("ERROR: ", e);
+                display(e);
+            },
+            done : function(e) {
+                console.log("DONE");
+                enableSearchButton(true);
+            }
+        });
+    }
+
+    function getData(){
+        var data;
+        if($("#checkboxLoad").prop("checked")){
+            data=$('#fileLoad').val();
+        }
+        else{
+            data=$('#hrefLoad').val();
+        }
+        return data;
+    }
+
+</script>
 </body>
 </html>
