@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Service("lectorService")
@@ -60,6 +62,7 @@ public class LectorServiceImpl implements LectorService{
     @Override
     public List<Discipline> getDisciplineListForLector(int id) {
         List<Integer> ids=lectorDisciplineDao.getDisciplinesIdsForLector(id);
+        if(ids.isEmpty()||ids==null)return Collections.emptyList();
         List<Discipline> disciplines=disciplineService.getDisciplinesWithIds(ids);
         return disciplines;
     }
