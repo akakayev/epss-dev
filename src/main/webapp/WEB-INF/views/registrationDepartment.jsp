@@ -19,9 +19,14 @@
             <div>
                 <label>Университет</label>
                 <select id="university" path="faculty" class="form-control">
-                    <c:forEach items="${universiries}" var="institution">
-                    <option value="${institution.id}">${institution.abbreviation}</option>
-                    </c:forEach>
+                    <%--<c:forEach items="${universiries}" var="institution">--%>
+                    <%--<option value="${institution.id}">${institution.abbreviation}</option>--%>
+                    <%--</c:forEach>--%>
+                        <option value="2">2</option>
+                        <option value="1">1</option>
+                        <option value="4">4</option>
+                        <option value="3">3</option>
+
                 </select>
             </div>
             <div>
@@ -145,7 +150,7 @@
 
 
     jQuery(document).ready(function ($) {
-        $("#faculty").change(function (event) {
+        $("#university").change(function (event) {
             setIdUniversity($("#university").val());
         });
     });
@@ -156,17 +161,16 @@
         $.ajax({
             type : "POST",
             contentType : "application/json",
-            url : "/epss/",
+            url : "url/getFacultyList",
             data : JSON.stringify(university),
             dataType : 'json',
             timeout : 100000,
             success : function(data) {
-                console.log("SUCCESS: ", lector);
+                console.log("SUCCESS: ", university);
                 console.log("SUCCESS: ", data);
-                // alert(data.message);
             },
             error : function(e) {
-                console.log("ERROR: ", e);
+                console.log("ERROR: log", e);
 
             },
             done : function(e) {
