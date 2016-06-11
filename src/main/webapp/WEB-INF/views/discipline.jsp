@@ -77,22 +77,19 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Доклад</td>
-                    <td>1</td>
-                    <td><a href="#">Оценка безопасности системы управления сервером</a></td>
-                    <td>20.07.2019</td>
-                    <td>
-                        <button type="button" class="btn btn-default">Скачать</button>
-                    </td>
-                </tr>
+                <c:forEach items="${works}" var="work">
+                    <tr>
+                        <td>${work.workKind}</td>
+                        <td>${work.number}</td>
+                        <td><a href="#${work.workKindId}">${work.theme}</a></td>
+                        <td>${work.deadline}</td>
+                        <td>
+                            <button type="button" class="btn btn-default" value=${work.workKindId} >Скачать</button>
+                        </td>
+                    </tr>
+                </c:forEach>
                 </tbody>
             </table>
-            <ul>
-                <c:forEach items="${works}" var="work">
-                    <li>${work.theme} ${work.deadline} ${work.kind} ${work.kind}</li>
-                </c:forEach>
-            </ul>
         </div>
     </div>
 </div>
