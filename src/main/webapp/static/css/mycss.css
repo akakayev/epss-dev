@@ -44,22 +44,6 @@ textarea{
 	float:left;
 	margin-bottom:5px;
 }
-/*.tab-nav li a{*/
-	/*display:inline-block;*/
-	/*width:80px;*/
-	/*padding:5px 10px;*/
-	/*font:normal 12px Arial, Helvetica, sans-serif;*/
-	/*color:#fff;*/
-	/*text-decoration:none;*/
-/*}*/
-/*.tab-nav li a:hover{*/
-	/*color:#fff;*/
-	/*text-decoration:none;*/
-	/*background:#777;*/
-/*}*/
-/*.tab-nav li.select a{*/
-	/*background:#bbb;*/
-/*}*/
 .tab-nav .active{
 	display:inline-block;
 	padding:5px;
@@ -69,4 +53,9 @@ textarea{
 	padding:10px;
 	border:solid 1px #cccccc;
 	background:#fcfcfc;
+}
+
+.hover-td :hover > tr{
+	background-color: #ddd;
+	cursor: pointer;
 }
