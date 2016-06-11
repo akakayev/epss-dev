@@ -11,10 +11,6 @@
     <link href="<c:url value='/static/css/mycss.css' />" rel="stylesheet"/>
     <script src="<c:url value='/static/js/jquery-2.2.3.js'/>"></script>
     <script src="<c:url value='/static/js/bootstrap.js'/>"></script>
-    <script>
-        $('input[type=file]').bootstrapFileInput();
-        $('.file-inputs').bootstrapFileInput();
-    </script>
 
 </head>
 <body>
