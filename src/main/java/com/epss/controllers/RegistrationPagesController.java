@@ -1,6 +1,8 @@
 package com.epss.controllers;
 
 import com.epss.dto.RegistrationResponse;
+import com.epss.model.Faculty;
+import com.epss.model.Institution;
 import com.epss.service.LectorService;
 import com.epss.service.StudentService;
 import com.epss.service.UniversityService;
@@ -8,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/")
@@ -44,21 +48,16 @@ public class RegistrationPagesController {
 
     @RequestMapping(value = { "/registrationDepartment" }, method = RequestMethod.GET)
     public String registrationDepartment(ModelMap model) {
-        model.addAttribute("universiries", universityService.getInstitutionsList());
+        List<Institution> institutionList=universityService.getInstitutionsList();
+        model.addAttribute("universiries", institutionList);
+        model.addAttribute("faculties", universityService.getFacultiesList(institutionList.get(0).getId()));
         return "/registrationDepartment";
     }
 
     @RequestMapping(value = "/getFacultyList", method = RequestMethod.GET)
     public @ResponseBody
-    String getCharNum(@RequestParam String id) {
-
-        RegistrationResponse result = new RegistrationResponse();
-
-        if (id != null) {
-            result.setSuccess(true);
-            result.setMessage("success");
-        }
-
-        return "hui"+id;
+    List<Faculty> getCharNum(@RequestParam String id) {
+        List<Faculty> facultyList =universityService.getFacultiesList(Integer.parseInt(id));
+        return facultyList;
     }
 }
