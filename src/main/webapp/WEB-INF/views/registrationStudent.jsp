@@ -197,6 +197,21 @@
         }
     }
 
+    function checkPassword(){
+        var pas = $('#password').val();
+        var rPas = $('#repetPassword').val();
+        if((pas != rPas)&(pas != "")){
+            $('#alertPas').text("Пароль не совпадает с проверкой или не заполнен!!!");
+            $('#colorAlertPas').text("#alertPas{color:red;}");
+            return false;
+        }
+        else{
+            $('#alertPas').text("");
+            $('#colorAlertPas').text("");
+            return true;
+        }
+    }
+
     function displayRezultRegistration(data){
         $('#modal').text(data.message);
         if(data.success == false){
