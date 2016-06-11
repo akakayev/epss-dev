@@ -1,6 +1,7 @@
 package com.epss.controllers;
 
 import com.epss.service.DisciplineService;
+import com.epss.service.ManualService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -34,9 +35,11 @@ public class UnsortedPagesController extends BasePageController{
         return "/messages";
     }
 
+    @Autowired
+    private ManualService manualService;
     @RequestMapping(value = { "/discipline" }, method = RequestMethod.GET)
     public String disciplinePage(ModelMap model) {
-
+        model.addAttribute("manuals", manualService.getManualsForDiscipline(1));
         model.addAttribute("works", disciplineService.getWorksForDiscipline(1));
         return "/discipline";
     }

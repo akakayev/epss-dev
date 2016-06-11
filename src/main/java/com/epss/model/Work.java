@@ -1,6 +1,9 @@
 package com.epss.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -15,10 +18,12 @@ public class Work {
         this.workKindId = work.getWorkKindId();
         this.number = work.getNumber();
         this.theme = work.getTheme();
-        this.deadline = work.getDeadline();
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yyyy");
+        this.deadline = formatter.parseDateTime(work.getDeadline()).toDate();
     }
 
     public Work(){}
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer id;
@@ -83,8 +88,8 @@ public class Work {
         this.theme = theme;
     }
 
-    public Date getDeadline() {
-        return deadline;
+    public String getDeadline() {
+        return new DateTime(deadline).toString("dd/MM/yyyy");
     }
 
     public void setDeadline(Date deadline) {

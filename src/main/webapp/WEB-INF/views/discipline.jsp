@@ -61,6 +61,11 @@
                 </tr>
                 </tbody>
             </table>
+            <ol>
+                <c:forEach items="${manuals}" var="manual">
+                    <li>${manual.disciplineName} ${manual.link}</li>
+                </c:forEach>
+            </ol>
         </div>
         <div id="panel2" class="tab-pane fade">
                     <div class ="tabBelow">
