@@ -2,6 +2,7 @@ package com.epss.dto;
 
 
 import com.epss.model.Work;
+import org.joda.time.DateTime;
 
 public class WorkDto extends Work{
 
@@ -18,5 +19,10 @@ public class WorkDto extends Work{
 
     public void setWorkKind(String workKind) {
         this.workKind = workKind;
+    }
+
+    public String getDeadlineFormatted() {
+        DateTime dateTime = new DateTime(deadline);
+        return dateTime.toString("YYYY-MM-DD");
     }
 }
