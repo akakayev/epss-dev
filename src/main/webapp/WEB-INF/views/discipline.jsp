@@ -50,22 +50,19 @@
                 </tr>
                 </thead>
                 <tbody>
+                <c:forEach items="${manuals}" var="manual">
                 <tr>
-                    <td><a href="#">Реферат</a></td>
-                    <td>.doc</td>
-                    <td>23КБ</td>
-                    <td></td>
+                    <td><a href="${manual.link}">${manual.fileName}</a></td>
+                    <td>${manual.format}</td>
+                    <td>${manual.size}</td>
+                    <td>${manual.attachmentKind}</td>
                     <td>
                         <button type="button" class="btn btn-default">Скачать</button>
                     </td>
                 </tr>
+                </c:forEach>
                 </tbody>
             </table>
-            <ol>
-                <c:forEach items="${manuals}" var="manual">
-                    <li>${manual.disciplineName} ${manual.link}</li>
-                </c:forEach>
-            </ol>
         </div>
         <div id="panel2" class="tab-pane fade">
                     <div class ="tabBelow">
