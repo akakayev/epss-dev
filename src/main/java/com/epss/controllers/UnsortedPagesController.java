@@ -36,6 +36,8 @@ public class UnsortedPagesController extends BasePageController{
 
     @RequestMapping(value = { "/discipline" }, method = RequestMethod.GET)
     public String disciplinePage(ModelMap model) {
+
+        model.addAttribute("works", disciplineService.getWorksForDiscipline(1));
         return "/discipline";
     }
 

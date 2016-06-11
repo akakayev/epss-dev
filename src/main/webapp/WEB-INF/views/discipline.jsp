@@ -92,6 +92,11 @@
                 </tr>
                 </tbody>
             </table>
+            <ul>
+                <c:forEach items="${works}" var="work">
+                    <li>${work.theme} ${work.deadline} ${work.kind} ${work.kind}</li>
+                </c:forEach>
+            </ul>
         </div>
     </div>
 </div>
