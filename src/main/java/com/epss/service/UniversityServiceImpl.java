@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service("universityService")
@@ -43,6 +44,8 @@ public class UniversityServiceImpl implements UniversityService{
 
     @Override
     public List<Faculty> getFacultiesList(int institutionId) {
-        return facultyDao.getAllFaculties(institutionId);
+        List<Faculty>  facultyList=facultyDao.getAllFaculties(institutionId);
+        if(facultyList==null)return Collections.emptyList();
+        return facultyList;
     }
 }

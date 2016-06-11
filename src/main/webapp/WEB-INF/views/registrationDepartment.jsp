@@ -19,22 +19,17 @@
             <div>
                 <label>Университет</label>
                 <select id="university" path="faculty" class="form-control">
-                    <%--<c:forEach items="${universiries}" var="institution">--%>
-                    <%--<option value="${institution.id}">${institution.abbreviation}</option>--%>
-                    <%--</c:forEach>--%>
-                        <option value="2">2</option>
-                        <option value="1">1</option>
-                        <option value="4">4</option>
-                        <option value="3">3</option>
-
+                    <c:forEach items="${universiries}" var="institution">
+                    <option value="${institution.id}">${institution.abbreviation}</option>
+                    </c:forEach>
                 </select>
             </div>
             <div>
                 <label>институт/факультет</label>
                 <select id="faculty" path="faculty" class="form-control">
-                    <%--<c:forEach items="${facultys}" var="faculty">--%>
-                    <%--<option value="${faculty.id}">${faculty.abbreviation}</option>--%>
-                    <%--</c:forEach>--%>
+                    <c:forEach items="${faculties}" var="faculty">
+                    <option value="${faculty.id}">${faculty.abbreviation}</option>
+                    </c:forEach>
                 </select>
             </div>
 
@@ -89,6 +84,10 @@
             enableSearchButton(false);
             event.preventDefault();
             departmentRegAjax();
+        });
+
+        $("#university").change(function (event) {
+            setIdUniversity($("#university").val());
         });
     });
 
@@ -148,22 +147,13 @@
         }
     }
 
-
-    jQuery(document).ready(function ($) {
-        $("#university").change(function (event) {
-            setIdUniversity($("#university").val());
-        });
-    });
-
     function setIdUniversity(id){
         var university = {};
         university["id"] = id;
         $.ajax({
-            type : "POST",
-            contentType : "application/json",
-            url : "url/getFacultyList",
-            data : JSON.stringify(university),
-            dataType : 'json',
+            type : "GET",
+            url : "/epss/getFacultyList",
+            data : {id:id},
             timeout : 100000,
             success : function(data) {
                 console.log("SUCCESS: ", university);
