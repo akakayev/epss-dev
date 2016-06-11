@@ -93,21 +93,17 @@
 
     function departmentRegAjax() {
 
-
-        var departmentDetails = {};
-        departmentDetails["manager"]= $("#rectorName").val();
-        departmentDetails["description"]= $("#shortDescription").val();
-
         var housing={};
         housing["address"]= $("#address").val();
         housing["coordinates"]= $("#coordinates").val();
 
         var department={};
-        department["name"] = $("#fullTitle").val();
+        department["idInstitution"] = $("#university").val();
+        department["IdFaculty"] = $("#faculty").val();
+        department["name"] = $("#name").val();
         department["abbreviation"] = $("#abbreviation").val();
-        department["gradation"] = $("#gradation").val();
         department["faculty"] = $("#faculty").val();
-        department["departmentDetails"]=departmentDetails;
+        department["departmentDetails"]=$("#shortDescription").val();
         department["housing"]=housing;
 
         $.ajax({
@@ -156,6 +152,7 @@
             data : {id:id},
             timeout : 100000,
             success : function(data) {
+                addInstitution(data);
                 console.log("SUCCESS: ", university);
                 console.log("SUCCESS: ", data);
             },
@@ -170,6 +167,14 @@
         });
     }
 
+
+    function addInstitution(data){//добавление элементов в select
+        var institution = data;
+        $("#faculty").empty();
+        for(var i = 0 ; i<institution.length ; i++ ){
+            $("#faculty").append("<option value ="+institution[i].id+">"+institution[i].abbreviation+"</option>");
+        }
+    }
 
 </script>
 </body>
