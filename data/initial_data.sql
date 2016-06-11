@@ -1,23 +1,3 @@
--- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
---
--- Host: 127.0.0.1    Database: epss
--- ------------------------------------------------------
--- Server version	5.7.12-log
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Dumping data for table `academic_performance`
---
 
 LOCK TABLES `academic_performance` WRITE;
 /*!40000 ALTER TABLE `academic_performance` DISABLE KEYS */;
@@ -40,6 +20,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `attachments` WRITE;
 /*!40000 ALTER TABLE `attachments` DISABLE KEYS */;
+INSERT INTO `attachments` VALUES (1,'МУ2016',0,'doc',NULL,'https://docs.google.com/document/d/1T2W_92tlOOOOGAVYM_62sJ8XZT7-DSUXHDaGn4oTs90/edit','MANUAL');
 /*!40000 ALTER TABLE `attachments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -137,8 +118,10 @@ UNLOCK TABLES;
 
 LOCK TABLES `manuals` WRITE;
 /*!40000 ALTER TABLE `manuals` DISABLE KEYS */;
+INSERT INTO `manuals` VALUES (1,1,1);
 /*!40000 ALTER TABLE `manuals` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 --
 -- Dumping data for table `messages`
