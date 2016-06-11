@@ -50,18 +50,15 @@
 
         <div class="form-group">
             <label> Выберите вид загрузки файла</label>
-            <p><label>
-                <form>
-
-                    <label class ="radio-inline">
+                <p><label class ="radio-inline">
                         <input type="radio" name="load" id="r1" checked >
                         <input type="file"  id="fileLoad" placeholder="выберите файл" required />
-                    </label><Br>
+                </label><Br></p>
+                    <p></p>
                     <label class ="radio-inline">
                         <input type="radio" name="load" id="r2" >
                         <input type="txt" class="form-control " id="hrefLoad"  placeholder="Введите ссылку"  disabled="true" required />
                     </label>
-                </form>
         </div>
 
         <button id="submit" id="submit" type="submit" class="btn btn-default" >Создать работу</button>
@@ -117,14 +114,6 @@
             }
         });
     }
-
-
-
 </script>
 </body>
 </html>
-<!-- слева список  попыток  в попытки ввести  фреймы и снизу комментарий только для пеподавателя и кнопка
-для ответа студена
--->
-<!-- список -->
-<!-- мои работы  номер , тема , оценка, делайн -->
