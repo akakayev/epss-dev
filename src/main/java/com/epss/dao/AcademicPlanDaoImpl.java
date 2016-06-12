@@ -21,7 +21,7 @@ public class AcademicPlanDaoImpl extends AbstractDao<Integer, AcademicPlan> impl
 
     @Override
     public List<AcademicPlan> getPlanForDepartmentInSemester(int id, int semester) {
-        Criteria cr = createEntityCriteria().add(Restrictions.eq("id", id))
+        Criteria cr = createEntityCriteria().add(Restrictions.eq("department", id))
                 .add(Restrictions.eq("semester", semester))
                 .addOrder(Order.asc("id"));
         return (List<AcademicPlan>) cr.list();

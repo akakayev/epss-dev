@@ -34,37 +34,59 @@ public class AcademicPlan {
     @JsonView(Views.Public.class)
     @NotNull
     @Column(name = "HOURS", nullable = false)
-    private Integer hours;
+    protected Integer hours;
 
     @JsonView(Views.Public.class)
     @NotNull
     @Column(name = "LECTURES", nullable = false)
-    private Integer lectures;
+    protected Integer lectures;
 
     @JsonView(Views.Public.class)
     @NotNull
     @Column(name = "LABS", nullable = false)
-    private Integer labs;
+    protected Integer labs;
 
     @JsonView(Views.Public.class)
     @NotNull
     @Column(name = "SEMINARS", nullable = false)
-    private Integer seminars;
+    protected Integer seminars;
 
     @JsonView(Views.Public.class)
     @NotNull
     @Column(name = "DIPLOMA", nullable = false)
-    private Byte diploma;
+    protected Byte diploma;
 
     @JsonView(Views.Public.class)
     @NotEmpty
     @Column(name = "EVALUATION", nullable = false)
-    private String evaluation;
+    protected String evaluation;
 
     @JsonView(Views.Public.class)
     @NotEmpty
     @Column(name = "EDUCATION_FORM", nullable = false)
     private String educationForm;
+
+    @JsonView(Views.Public.class)
+    @NotNull
+    @Column(name = "DEPARTMENT", nullable = false)
+    protected Integer department;
+
+    public AcademicPlan() {
+    }
+
+    public AcademicPlan(AcademicPlan academicPlan) {
+        this.course = academicPlan.getCourse();
+        this.semester = academicPlan.getSemester();
+        this.disciplineId = academicPlan.getDisciplineId();
+        this.hours = academicPlan.getHours();
+        this.lectures = academicPlan.getLectures();
+        this.labs = academicPlan.getLabs();
+        this.seminars = academicPlan.getSeminars();
+        this.diploma = academicPlan.getDiploma();
+        this.evaluation = academicPlan.getEvaluation();
+        this.educationForm = academicPlan.getEducationForm();
+        this.department = academicPlan.getDepartment();
+    }
 
     public Integer getId() {
         return id;
@@ -152,5 +174,13 @@ public class AcademicPlan {
 
     public void setEducationForm(String educationForm) {
         this.educationForm = educationForm;
+    }
+
+    public Integer getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Integer department) {
+        this.department = department;
     }
 }

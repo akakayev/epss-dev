@@ -49,11 +49,11 @@
     $(document).ready(getAcademicPlanJSON());
 
     function getAcademicPlanJSON() {
-        var department = "true";
+        var department=${department};
         $.ajax({
             type: "GET",
             url: "/epss/getPlan",
-            data: JSON.stringify(department),
+            data: {id:department},
             timeout: 100000,
             success: function (data) {
                 console.log("SUCCESS: ", department);
