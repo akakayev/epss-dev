@@ -19,7 +19,7 @@
             <div>
                 <label>Университет</label>
                 <select id="university" path="faculty" class="form-control">
-                    <c:forEach items="${universiries}" var="institution">
+                    <c:forEach items="${universities}" var="institution">
                     <option value="${institution.id}">${institution.abbreviation}</option>
                     </c:forEach>
                 </select>
