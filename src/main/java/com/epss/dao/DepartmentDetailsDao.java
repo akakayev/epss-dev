@@ -1,5 +1,6 @@
 package com.epss.dao;
 
+import com.epss.dto.FacultyDto;
 import com.epss.model.DepartmentDetails;
 
 /**
@@ -8,6 +9,8 @@ import com.epss.model.DepartmentDetails;
 public interface DepartmentDetailsDao {
 
     public DepartmentDetails getDetails(int id);
+
+    public DepartmentDetails getDetails(DepartmentDetails departmentDetails);
 
     public void addDetails(DepartmentDetails departmentDetails);
 }

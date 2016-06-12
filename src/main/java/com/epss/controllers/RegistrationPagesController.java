@@ -1,9 +1,9 @@
 package com.epss.controllers;
 
+import com.epss.dto.FacultyDto;
 import com.epss.dto.RegistrationResponse;
 import com.epss.model.Faculty;
 import com.epss.model.Institution;
-import com.epss.service.LectorService;
 import com.epss.service.StudentService;
 import com.epss.service.UniversityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +25,10 @@ public class RegistrationPagesController {
 
     @RequestMapping(value = { "/registrationStudent" }, method = RequestMethod.GET)
     public String registrationStudent(ModelMap model) {
+        List<Institution> institutionList=universityService.getInstitutionsList();
+        model.addAttribute("universities", institutionList);
+        model.addAttribute("faculties", universityService.getFacultiesList(institutionList.get(0).getId()));
+        model.addAttribute("departments",universityService.getDepartmentsList());
         model.addAttribute("groups",studentService.getGroupList());
         return "/registrationStudent";
     }
@@ -37,7 +41,7 @@ public class RegistrationPagesController {
 
     @RequestMapping(value = { "/registrationFaculty" }, method = RequestMethod.GET)
     public String registrationFaculty(ModelMap model) {
-        model.addAttribute("universiries", universityService.getInstitutionsList());
+        model.addAttribute("universities", universityService.getInstitutionsList());
         return "/registrationFaculty";
     }
 
@@ -49,7 +53,7 @@ public class RegistrationPagesController {
     @RequestMapping(value = { "/registrationDepartment" }, method = RequestMethod.GET)
     public String registrationDepartment(ModelMap model) {
         List<Institution> institutionList=universityService.getInstitutionsList();
-        model.addAttribute("universiries", institutionList);
+        model.addAttribute("universities", institutionList);
         model.addAttribute("faculties", universityService.getFacultiesList(institutionList.get(0).getId()));
         return "/registrationDepartment";
     }
@@ -60,4 +64,13 @@ public class RegistrationPagesController {
         List<Faculty> facultyList =universityService.getFacultiesList(Integer.parseInt(id));
         return facultyList;
     }
+
+    @RequestMapping(value = "/addFaculty", method = RequestMethod.GET)
+    public @ResponseBody
+    RegistrationResponse addFaculty(@RequestParam FacultyDto faculty) {
+        RegistrationResponse registrationResponse= new RegistrationResponse();
+        universityService.addFaculty(faculty);
+        return registrationResponse;
+    }
+
 }

@@ -19,7 +19,7 @@
             <div>
                 <label>Учебное заведение</label>
                 <select id="institution" path="group" class="form-control">
-                    <c:forEach items="${universiries}" var="institution">
+                    <c:forEach items="${universities}" var="institution">
                         <option value="${institution.id}">${institution.abbreviation}</option>
                     </c:forEach>
                 </select>
@@ -90,8 +90,7 @@
     function facultyRegAjax() {
 
 
-        var departmentDetails = {};
-        departmentDetails["description"]= $("#shortDescription").val();
+
 
         var housing={};
         housing["address"]= $("#address").val();
@@ -107,10 +106,10 @@
         console.log("SUCCESS: ", faculties);
 
         $.ajax({
-            type : "POST",
+            type : "GET",
             contentType : "application/json",
-            url : "/epss/reg",
-            data : JSON.stringify(faculties),
+            url : "/epss/addFaculty",
+            data : JSON.stringify(facultie),
             dataType : 'json',
             timeout : 100000,
             success : function(data) {
@@ -126,7 +125,7 @@
             }
         });
     }
-e;
+
     function enableSearchButton(flag) {
         $("#submit").prop("disabled", flag);
     }

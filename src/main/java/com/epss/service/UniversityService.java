@@ -1,6 +1,7 @@
 package com.epss.service;
 
 
+import com.epss.dto.FacultyDto;
 import com.epss.model.Department;
 import com.epss.model.Faculty;
 import com.epss.model.Institution;
@@ -16,4 +17,6 @@ public interface UniversityService {
     public List<Institution> getInstitutionsList();
 
     public List<Faculty> getFacultiesList(int institutionId);
+
+    void addFaculty(FacultyDto faculty);
 }
