@@ -31,7 +31,7 @@
                 <li><a href="<c:url value='/messages'/>">Сообщения</a></li>
                 <li><a href="#about">Расписание</a></li>
                 <li><a href="<c:url value='/lector/disciplines-1' />">Дисциплины</a></li>
-                <li><a href="/lector/plan-1">Уч. план</a></li>
+                <li><a href="<c:url value='/lector/plan' />">Уч. план</a></li>
                 <li><a href="#contact">Мои работы</a></li>
                 <li><a href="<c:url value="/logout" />">Выход</a></li>
             </ul>
