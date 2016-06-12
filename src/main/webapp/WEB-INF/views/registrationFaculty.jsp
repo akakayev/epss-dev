@@ -91,31 +91,31 @@
 
 
         var departmentDetails = {};
-        departmentDetails["manager"]= $("#rectorName").val();
         departmentDetails["description"]= $("#shortDescription").val();
 
         var housing={};
         housing["address"]= $("#address").val();
         housing["coordinates"]= $("#coordinates").val();
 
-        var facultie={};
-        facultie["name"] = $("#fullTitle").val();
-        facultie["abbreviation"] = $("#abbreviation").val();
-        facultie["gradation"] = $("#gradation").val();
-        facultie["institution"] = $("#institution").val();
-        facultie["departmentDetails"]=departmentDetails;
-        facultie["housing"]=housing;
+        var faculties={};
+        faculties["name"] = $("#fullTitle").val();
+        faculties["abbreviation"] = $("#abbreviation").val();
+        faculties["gradation"] = $("#gradation").val();
+        faculties["institution"] = $("#institution").val();
+        faculties["departmentDetails"]=departmentDetails;
+        faculties["housing"]=housing;
+        console.log("SUCCESS: ", faculties);
 
         $.ajax({
             type : "POST",
             contentType : "application/json",
             url : "/epss/reg",
-            data : JSON.stringify(facultie),
+            data : JSON.stringify(faculties),
             dataType : 'json',
             timeout : 100000,
             success : function(data) {
                 console.log("SUCCESS: ", data);
-                displayRezultRegistration(data);
+                displayResultRegistration(data);
             },
             error : function(e) {
                 console.log("ERROR: ", e);
@@ -126,12 +126,12 @@
             }
         });
     }
-
+e;
     function enableSearchButton(flag) {
         $("#submit").prop("disabled", flag);
     }
 
-    function displayRezultRegistration(data){
+    function displayResultRegistration(data){
         $('#modal').text(data.message);
         if(data.success == false){
             $('#namea').css(" #errorReg{border-color: #ff0000 ;}");
