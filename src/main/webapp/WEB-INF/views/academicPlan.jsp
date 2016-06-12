@@ -10,7 +10,7 @@
     <link href="<c:url value='/static/css/bootstrap.css' />" rel="stylesheet"/>
     <script src="<c:url value='/static/js/jquery-2.2.3.js'/>"></script>
     <script src="<c:url value='/static/js/bootstrap.js'/>"></script>
- </head>
+</head>
 <body>
 <sec:authorize access="hasRole('LECTOR')">
     <%@include file="lector/head.jsp" %>
@@ -25,36 +25,7 @@
     <div>
         <h3>Академический план</h3>
     </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-                    Семестр 1</a>
-            </h4>
-        </div>
-        <div id="collapse1" class="panel-collapse collapse ">
-            <div class="">
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th>Название предмета</th>
-                        <th>Количество часов</th>
-                        <th>Количество лекций</th>
-                        <th>Количество лабораторных</th>
-                        <th>Количество практик</th>
-                        <th>Вид оценивания</th>
-                        <th>Оценка идет в диплом</th>
-                    </tr>
-                    </thead>
-                    <tbody>
 
-
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
-    </div>
 </div>
 <div class=" col-sm-1 col-md-2"></div>
 <script>
@@ -67,6 +38,8 @@
             timeout: 100000,
             success: function (data) {
                 console.log("SUCCESS: ", data);
+                parserBigJSON(data,1);
+
             },
             error: function (e) {
                 console.log("ERROR: log", e);
@@ -77,6 +50,29 @@
             }
         });
     }
+
+    function parserBigJSON(data){
+
+        for(var i=1;i<13;i++){
+            var array= data[i];
+
+            $("#accordion").append("<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a data-toggle='collapse' data-parent='#accordion' href='#collapse"+i+"'>Семестр "+i+"</a></h4></div><div id='collapse"+i+"' class='panel-collapse collapse'><div><table class='table table-bordered'><thead><tr><th>Название предмета</th><th>Количество часов</th><th>Количество лекций</th><th>Количество лабораторных</th><th>Количество практик</th> <th>Вид оценивания</th><th>Оценка идет в диплом</th></tr></thead><tbody id ='tbody"+i+"'></tbody></table></div></div>");
+
+            for(var j = 0 ;j<array.length;j++){
+                $("#tbody"+i).append("<tr id='tr"+i+""+j+"'>");
+                $("#tr"+i+""+j).append("<td>"+array[j].discipline+"</td>");
+                $("#tr"+i+""+j).append("<td>"+array[j].hours+"</td>");
+                $("#tr"+i+""+j).append("<td>"+array[j].lectures+"</td>");
+                $("#tr"+i+""+j).append("<td>"+array[j].labs+"</td>");
+                $("#tr"+i+""+j).append("<td>"+array[j].seminars+"</td>");
+                $("#tr"+i+""+j).append("<td>"+array[j].evaluation+"</td>");
+                $("#tr"+i+""+j).append("<td>"+(array[j].diploma==0?"Не идет":"Идет")+"</td></tr>");
+
+            }
+        }
+    }
+
+
 </script>
 </body>
 </html>
