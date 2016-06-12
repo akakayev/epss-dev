@@ -1,6 +1,8 @@
 package com.epss.service;
 
 
+import com.epss.model.Department;
+import com.epss.model.DepartmentDetails;
 import com.epss.model.User;
 
 import java.util.List;
@@ -22,4 +24,6 @@ public interface UserService {
     boolean isUserLoginUnique(Integer id, String sso);
 
     public boolean isLoginExists(String login);
+
+    int getUserDepartmentId(User user);
 }

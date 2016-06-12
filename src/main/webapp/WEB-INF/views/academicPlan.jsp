@@ -32,14 +32,11 @@
     $(document).ready(getAcademicPlanJSON());
 
     function getAcademicPlanJSON() {
-        var department=${department};
         $.ajax({
             type: "GET",
             url: "/epss/getPlan",
-            data: {id:department},
             timeout: 100000,
             success: function (data) {
-                console.log("SUCCESS: ", department);
                 console.log("SUCCESS: ", data);
                 parserBigJSON(data,1);
 
