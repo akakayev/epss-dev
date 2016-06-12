@@ -56,6 +56,11 @@ public class StudentServiceImpl implements StudentService{
         return studentRegistrationDto;
     }
 
+    @Override
+    public Student getStudentByRecordBook(Integer recordBookNumber) {
+        return studentDao.getStudentByRecordBook(recordBookNumber);
+    }
+
     private boolean canAddStudent(String login, int recordBookNumber) {
         return userService.isLoginExists(login)&&studentDao.getStudentByRecordBook(recordBookNumber)==null;
     }

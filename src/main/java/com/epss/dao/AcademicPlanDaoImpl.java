@@ -8,6 +8,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collections;
 import java.util.List;
 
 @Repository("academicPlanDao")
@@ -26,4 +27,14 @@ public class AcademicPlanDaoImpl extends AbstractDao<Integer, AcademicPlan> impl
                 .addOrder(Order.asc("id"));
         return (List<AcademicPlan>) cr.list();
     }
+
+    @Override
+    public List<AcademicPlan> getPlanEntriesWithIds(List<Integer> ids) {
+        if(ids.isEmpty()||ids==null)return Collections.emptyList();
+        Criteria cr = createEntityCriteria().add(Restrictions.in("id",ids))
+                .addOrder(Order.asc("id"));
+        return (List<AcademicPlan>) cr.list();
+    }
+
+
 }

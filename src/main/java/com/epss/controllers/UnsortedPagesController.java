@@ -23,11 +23,6 @@ public class UnsortedPagesController extends BasePageController {
         return "/work";
     }
 
-    @RequestMapping(value = {"/student/recordBook"}, method = RequestMethod.GET)
-    public String recordBookPage(ModelMap model) {
-        return "/student/recordBook";
-    }
-
     @RequestMapping(value = {"/myWork"}, method = RequestMethod.GET)
     public String myWorksPage(ModelMap model) {
         return "/myWork";

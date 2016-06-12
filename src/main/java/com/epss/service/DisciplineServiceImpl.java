@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,8 +34,8 @@ public class DisciplineServiceImpl implements DisciplineService{
     }
 
     @Override
-    public List<Discipline> getDisciplinesWithIds(List<Integer> ids) {
-        return disciplineDao.getDisciplinesWithIds(ids);
+    public List<Discipline> getDisciplinesWithIds(Integer ... ids) {
+        return disciplineDao.getDisciplinesWithIds(Arrays.asList(ids));
     }
 
     @Override

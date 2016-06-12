@@ -11,7 +11,7 @@ public interface DisciplineService {
 
     public List<Discipline> getDisciplinesListForDepartment(int departmentId);
 
-    List<Discipline> getDisciplinesWithIds(List<Integer> ids);
+    List<Discipline> getDisciplinesWithIds(Integer ... ids);
 
     List<WorkDto> getWorksForDiscipline(int disciplineId);
 }

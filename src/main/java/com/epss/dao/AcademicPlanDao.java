@@ -11,4 +11,6 @@ public interface AcademicPlanDao {
 
     public List<AcademicPlan> getPlanForDepartmentInSemester(int id, int semester);
 
+    public List<AcademicPlan> getPlanEntriesWithIds(List<Integer> ids);
+
 }

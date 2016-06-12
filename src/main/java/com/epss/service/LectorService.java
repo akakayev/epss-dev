@@ -13,4 +13,6 @@ public interface LectorService {
     public LectorRegistrationDto getLectorByLogin(String login);
 
     public List<Discipline> getDisciplineListForLector(int id);
+
+    public Lector getLectorById(int id);
 }

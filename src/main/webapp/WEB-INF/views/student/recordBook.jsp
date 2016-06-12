@@ -292,5 +292,26 @@
         });
     });
 </script>
+<script>
+    $(document).ready(getAcademicPlanJSON());
+
+    function getAcademicPlanJSON() {
+        $.ajax({
+            type: "GET",
+            url: "/epss/getRecordBook",
+            timeout: 100000,
+            success: function (data) {
+                console.log("SUCCESS: ", data);
+            },
+            error: function (e) {
+                console.log("ERROR: log", e);
+            },
+            done: function (e) {
+                console.log("DONE");
+                enableSearchButton(true);
+            }
+        });
+    }
+</script>
 </body>
 </html>

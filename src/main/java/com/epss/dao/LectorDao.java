@@ -10,4 +10,6 @@ public interface LectorDao {
     public void saveLector(Lector lector);
 
     public Lector getLectorByLogin(String login);
+
+    Lector getLectorById(int id);
 }
