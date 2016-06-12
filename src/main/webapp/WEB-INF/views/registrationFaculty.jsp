@@ -89,7 +89,6 @@
 
     function facultyRegAjax() {
 
-
         var departmentDetails = {};
         departmentDetails["manager"]= $("#rectorName").val();
         departmentDetails["description"]= $("#shortDescription").val();
@@ -107,9 +106,9 @@
         facultie["housing"]=housing;
 
         $.ajax({
-            type : "POST",
+            type : "GET",
             contentType : "application/json",
-            url : "/epss/reg",
+            url : "/epss/addFaculty",
             data : JSON.stringify(facultie),
             dataType : 'json',
             timeout : 100000,

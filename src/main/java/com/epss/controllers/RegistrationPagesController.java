@@ -1,5 +1,7 @@
 package com.epss.controllers;
 
+import com.epss.dto.FacultyDto;
+import com.epss.dto.RegistrationResponse;
 import com.epss.model.Faculty;
 import com.epss.model.Institution;
 import com.epss.service.StudentService;
@@ -62,4 +64,13 @@ public class RegistrationPagesController {
         List<Faculty> facultyList =universityService.getFacultiesList(Integer.parseInt(id));
         return facultyList;
     }
+
+    @RequestMapping(value = "/addFaculty", method = RequestMethod.GET)
+    public @ResponseBody
+    RegistrationResponse addFaculty(@RequestParam FacultyDto faculty) {
+        RegistrationResponse registrationResponse= new RegistrationResponse();
+        universityService.addFaculty(faculty);
+        return registrationResponse;
+    }
+
 }

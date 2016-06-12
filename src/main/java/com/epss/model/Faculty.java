@@ -14,28 +14,28 @@ public class Faculty {
     @JsonView(Views.Public.class)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    protected Integer id;
     @JsonView(Views.Public.class)
     @NotEmpty
     @Column(name = "NAME", nullable = false)
-    private String name;
+    protected String name;
 
     @JsonView(Views.Public.class)
     @NotEmpty
     @Column(name = "ABBREVIATION", nullable = false)
-    private String abbreviation;
+    protected String abbreviation;
     @JsonView(Views.Public.class)
     @NotNull
     @Column(name = "INSTITUTION_ID", nullable = false)
-    private Integer institutionId;
+    protected Integer institutionId;
     @JsonView(Views.Public.class)
     @NotNull
     @Column(name = "DETAILS_ID", nullable = false)
-    private Integer details_id;
+    protected Integer details_id;
     @JsonView(Views.Public.class)
     @NotEmpty
     @Column(name = "GRADATION", nullable = false)
-    private String gradation;
+    protected String gradation;
 
     public Integer getId() {
         return id;
