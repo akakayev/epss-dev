@@ -23,9 +23,6 @@
 <div><label>_</label></div>
 <div class="col-sm-1 col-md-2"></div>
 <div class="col-xs-12 col-sm-10 col-md-8">
-    <h3>Мои работы</h3>
-    <a class="btn btn-default" href="<c:url value='/work'/>">Создать работу</a>
-    <div>
         <div class="panel-group">
             <%--<c:forEach>  для дисциплин--%>
             <div class="panel panel-default">
@@ -48,7 +45,6 @@
                                 <th>Оценка</th>
                                 <th>Врямя сдачи паботы</th>
                                 <th></th>
-                                <th></th>
                             </tr>
                             </thead>
                             <%--<c:forEach> для работ--%>
@@ -59,7 +55,6 @@
                                     <td class="workTr">разговариваю</td>
                                     <td class="workTr">сам</td>
                                     <td class="workTr">с собой</td>
-                                    <td><button class="btn btn-default" onclick="">Скачать</button></td>
                                     <td><button class="btn btn-danger" onclick="">Удалить</button></td>
                                </tr>
                                 </tbody>
@@ -83,7 +78,6 @@
         $(".workTr").parent().css("background","#fff");
     });
     $(".workTr").click(function (event) {
-        $(".workTr").parent().id;
         window.location.href = "<c:url value='/work'/>";
     });
 </script>
