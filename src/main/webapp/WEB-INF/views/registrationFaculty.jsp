@@ -89,27 +89,28 @@
 
     function facultyRegAjax() {
 
-
-
+        var departmentDetails = {};
+        departmentDetails["manager"]= "Ghbn@fdf.df";
+        departmentDetails["description"]= $("#shortDescription").val();
 
         var housing={};
         housing["address"]= $("#address").val();
         housing["coordinates"]= $("#coordinates").val();
 
-        var faculties={};
-        faculties["name"] = $("#fullTitle").val();
-        faculties["abbreviation"] = $("#abbreviation").val();
-        faculties["gradation"] = $("#gradation").val();
-        faculties["institution"] = $("#institution").val();
-        faculties["departmentDetails"]=departmentDetails;
-        faculties["housing"]=housing;
-        console.log("SUCCESS: ", faculties);
+        var faculty={};
+        faculty["name"] = $("#fullTitle").val();
+        faculty["abbreviation"] = $("#abbreviation").val();
+        faculty["gradation"] = $("#gradation").val();
+        faculty["institution"] = $("#institution").val();
+        faculty["departmentDetails"]=departmentDetails;
+        faculty["housing"]=housing;
+        console.log("SUCCESS: ", faculty);
 
         $.ajax({
             type : "GET",
             contentType : "application/json",
             url : "/epss/addFaculty",
-            data : JSON.stringify(facultie),
+            data : JSON.stringify(faculty),
             dataType : 'json',
             timeout : 100000,
             success : function(data) {
