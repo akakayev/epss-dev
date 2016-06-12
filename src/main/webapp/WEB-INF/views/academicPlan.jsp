@@ -47,125 +47,44 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <script type="text/javascript">
-                        // createTable("C:\\Users\\Пользователь\\Dropbox\\диплом\\jsons\\jsonAcademicPlan.json");
-                    </script>
-                    <tr>
-                        <td>Базы данных</td>
-                        <td>100</td>
-                        <td>18</td>
-                        <td>9</td>
-                        <td>0</td>
-                        <td>экзамен</td>
-                        <td>да</td>
-                    </tr>
-                    <tr>
-                        <td>Защита информации</td>
-                        <td>200</td>
-                        <td>20</td>
-                        <td>10</td>
-                        <td>10</td>
-                        <td>экзамен</td>
-                        <td>да</td>
-                    </tr>
+
+
                     </tbody>
                 </table>
             </div>
 
         </div>
     </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-                    Семестр 2</a>
-            </h4>
-        </div>
-        <div id="collapse2" class="panel-collapse collapse ">
-            <div class="list-group">
-                <script type="text/javascript">createTable()</script>
-            </div>
-        </div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-                    Семестр 3</a>
-            </h4>
-        </div>
-        <div id="collapse3" class="panel-collapse collapse ">
-            <div class="list-group">
-
-            </div>
-        </div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
-                    Семестр 4</a>
-            </h4>
-        </div>
-        <div id="collapse4" class="panel-collapse collapse ">
-            <div class="list-group">
-
-            </div>
-        </div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
-                    Семестр 5</a>
-            </h4>
-        </div>
-        <div id="collapse5" class="panel-collapse collapse ">
-            <div class="list-group">
-
-            </div>
-        </div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">
-                    Семестр 6</a>
-            </h4>
-        </div>
-        <div id="collapse6" class="panel-collapse collapse ">
-            <div class="list-group">
-
-            </div>
-        </div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse7">
-                    Семестр 7</a>
-            </h4>
-        </div>
-        <div id="collapse7" class="panel-collapse collapse ">
-            <div class="list-group">
-
-            </div>
-        </div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse8">
-                    Семестр 8</a>
-            </h4>
-        </div>
-        <div id="collapse8" class="panel-collapse collapse ">
-            <div class="list-group">
-
-            </div>
-        </div>
-    </div>
 </div>
 <div class="col-xs-1 col-sm-2 col-md-3"></div>
+<script>
+    $(document).ready(getAcademicPlan());
+
+    function getAcademicPlan(id){
+        var departmentId = id;
+        $.ajax({
+            type : "GET",
+            contentType : "application/json",
+            url : "/epss/getPlan",
+            data : JSON.stringify(departmentId),
+            dataType : 'json',
+            timeout : 100000,
+            success : function(data) {
+                console.log("SUCCESS: ", departmentId);
+                console.log("SUCCESS: ", data);
+
+            },
+            error : function(e) {
+                console.log("ERROR: ", e);
+            },
+            done : function(e) {
+                console.log("DONE");
+                enableSearchButton(true);
+            }
+        });
+    }
+
+
+</script>
 </body>
 </html>
