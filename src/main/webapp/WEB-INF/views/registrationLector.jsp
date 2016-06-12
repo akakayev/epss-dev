@@ -12,6 +12,7 @@
     <link href="<c:url value='/static/css/bootstrap.css' />" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css" />
     <script src="<c:url value='/static/js/jquery-2.2.3.js'/>"></script>
+    <script src="<c:url value='/static/js/ajax_university.js'/>"></script>
 </head>
 
 <body>
@@ -22,7 +23,22 @@
 
         <form  id="userForm" class="form-horizontal">
             <h4>Введите пожалуйста данные для регистрации преподавателя</h4>
-
+            <div>
+                <label>Университет</label>
+                <select id="university" path="faculty" class="form-control">
+                    <c:forEach items="${universities}" var="institution">
+                        <option value="${institution.id}">${institution.abbreviation}</option>
+                    </c:forEach>
+                </select>
+            </div>
+            <div>
+                <label>институт/факультет</label>
+                <select id="faculty" path="faculty" class="form-control">
+                    <c:forEach items="${faculties}" var="faculty">
+                        <option value="${faculty.id}">${faculty.abbreviation}</option>
+                    </c:forEach>
+                </select>
+            </div>
             <div>
                 <label>Фамилия</label>
                 <input type="txt" class="form-control" id="lastName"  placeholder="Фамилия" required/>
@@ -131,6 +147,9 @@
 
         });
 
+        $("#university").change(function (event) {
+            setIdUniversity($("#university").val(),"faculty");
+        });
     });
 
     function lectorRegAjax(){

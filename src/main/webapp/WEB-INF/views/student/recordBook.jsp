@@ -12,8 +12,8 @@
 <%@include file="head.jsp" %>
 <div><label>_</label></div>
 <div><label>_</label></div>
-<div class="col-sm-2 col-md-3"></div>
-<div class="col-xs-12 col-sm-8 col-md-6">
+<div class="col-sm-1 col-md-2"></div>
+<div class="col-xs-12 col-sm-10 col-md-8">
     <div>
         <h3>Электронная зачетка</h3>
     </div>
@@ -279,7 +279,7 @@
         </div>
     </div>
 </div>
-<div class="col-sm-2 col-md-3"></div>
+<div class="col-sm-1 col-md-2"></div>
 <script type="text/javascript">
     $(function(){
         $('.tab-nav li:first').addClass('select');                // Первой вкладке добавляетсякласс select

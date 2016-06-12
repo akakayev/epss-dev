@@ -37,7 +37,7 @@ textarea{
 	margin:0;
 	padding:0;
 	list-style:none;
-	width:120px;
+	width:100px;
 	float:left;
 }
 .tab-nav li{
@@ -53,9 +53,4 @@ textarea{
 	padding:10px;
 	border:solid 1px #cccccc;
 	background:#fcfcfc;
-}
-
-.hover-td :hover > tr{
-	background-color: #ddd;
-	cursor: pointer;
 }
