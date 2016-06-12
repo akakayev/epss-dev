@@ -20,8 +20,8 @@
 </sec:authorize>
 <div><label>_</label></div>
 <div><label>_</label></div>
-<div class="col-xs-1 col-sm-2 col-md-3"></div>
-<div class="panel-group col-xs-10 col-sm-8 col-md-6 " id="accordion">
+<div class=" col-sm-1 col-md-2"></div>
+<div class="panel-group col-xs-12 col-sm-10 col-md-8 " id="accordion">
     <div>
         <h3>Академический план</h3>
     </div>
@@ -56,35 +56,30 @@
         </div>
     </div>
 </div>
-<div class="col-xs-1 col-sm-2 col-md-3"></div>
+<div class=" col-sm-1 col-md-2"></div>
 <script>
-    $(document).ready(getAcademicPlan());
+    $(document).ready(getAcademicPlanJSON());
 
-    function getAcademicPlan(id){
-        var departmentId = id;
+    function getAcademicPlanJSON() {
+        var department=${department};
         $.ajax({
-            type : "GET",
-            contentType : "application/json",
-            url : "/epss/getPlan",
-            data : JSON.stringify(departmentId),
-            dataType : 'json',
-            timeout : 100000,
-            success : function(data) {
-                console.log("SUCCESS: ", departmentId);
+            type: "GET",
+            url: "/epss/getPlan",
+            data: {id:department},
+            timeout: 100000,
+            success: function (data) {
+                console.log("SUCCESS: ", department);
                 console.log("SUCCESS: ", data);
-
             },
-            error : function(e) {
-                console.log("ERROR: ", e);
+            error: function (e) {
+                console.log("ERROR: log", e);
             },
-            done : function(e) {
+            done: function (e) {
                 console.log("DONE");
                 enableSearchButton(true);
             }
         });
     }
-
-
 </script>
 </body>
 </html>
