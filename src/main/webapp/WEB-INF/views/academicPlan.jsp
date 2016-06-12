@@ -59,13 +59,14 @@
             $("#accordion").append("<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a data-toggle='collapse' data-parent='#accordion' href='#collapse"+i+"'>Семестр "+i+"</a></h4></div><div id='collapse"+i+"' class='panel-collapse collapse'><div><table class='table table-bordered'><thead><tr><th>Название предмета</th><th>Количество часов</th><th>Количество лекций</th><th>Количество лабораторных</th><th>Количество практик</th> <th>Вид оценивания</th><th>Оценка идет в диплом</th></tr></thead><tbody id ='tbody"+i+"'></tbody></table></div></div>");
 
             for(var j = 0 ;j<array.length;j++){
+                var evaluat ={"EXAM":"Экзамен","CP":"Курсовой проект","CREDIT":"Зачет","CW":"Курсовая работа"};
                 $("#tbody"+i).append("<tr id='tr"+i+""+j+"'>");
                 $("#tr"+i+""+j).append("<td>"+array[j].discipline+"</td>");
                 $("#tr"+i+""+j).append("<td>"+array[j].hours+"</td>");
                 $("#tr"+i+""+j).append("<td>"+array[j].lectures+"</td>");
                 $("#tr"+i+""+j).append("<td>"+array[j].labs+"</td>");
                 $("#tr"+i+""+j).append("<td>"+array[j].seminars+"</td>");
-                $("#tr"+i+""+j).append("<td>"+array[j].evaluation+"</td>");
+                $("#tr"+i+""+j).append("<td>"+evaluat[array[j].evaluation]+"</td>");
                 $("#tr"+i+""+j).append("<td>"+(array[j].diploma==0?"Не идет":"Идет")+"</td></tr>");
 
             }
