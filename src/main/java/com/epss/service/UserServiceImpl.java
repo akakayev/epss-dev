@@ -1,7 +1,12 @@
 package com.epss.service;
 
 
+import com.epss.dao.GroupDao;
 import com.epss.dao.UserDao;
+import com.epss.dto.LectorRegistrationDto;
+import com.epss.dto.StudentRegistrationDto;
+import com.epss.model.Department;
+import com.epss.model.Student;
 import com.epss.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,6 +24,15 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private StudentService studentService;
+
+    @Autowired
+    private LectorService lectorService;
+
+    @Autowired
+    private GroupDao groupDao;
 
     public User findById(int id) {
         return dao.findById(id);
@@ -70,5 +84,19 @@ public class UserServiceImpl implements UserService{
     public boolean isLoginExists(String login){
         User user = findByLogin(login);
         return user==null;
+    }
+
+    @Override
+    public int getUserDepartmentId(User user) {
+        String login = user.getLogin();
+        if(user.getPrimaryRole().equals("STUDENT")){
+            StudentRegistrationDto student= studentService.getStudentByLogin(login);
+            int group=student.getGroup();
+            return groupDao.getGroupById(group).getId();
+        }
+        else{
+            LectorRegistrationDto lector= lectorService.getLectorByLogin(login);
+            return lector.getDepartmentId();
+        }
     }
 }

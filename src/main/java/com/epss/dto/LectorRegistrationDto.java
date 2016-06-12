@@ -21,6 +21,7 @@ public class LectorRegistrationDto {
         this.position=lector.getPosition();
         this.userId=lector.getUserId();
         this.id=lector.getId();
+        this.departmentId=lector.getDepartmentId();
     }
 
     public Integer getDepartmentId() {
