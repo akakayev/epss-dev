@@ -31,4 +31,9 @@ public class LectorDaoImpl extends AbstractDao<Integer, Lector> implements Lecto
         Lector student = (Lector)crit.uniqueResult();
         return student;
     }
+
+    @Override
+    public Lector getLectorById(int id) {
+        return getByKey(id);
+    }
 }

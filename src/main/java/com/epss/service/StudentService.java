@@ -13,4 +13,6 @@ public interface StudentService {
     public List<Group> getGroupList();
 
     public StudentRegistrationDto getStudentByLogin(String login);
+
+    Student getStudentByRecordBook(Integer recordBookNumber);
 }

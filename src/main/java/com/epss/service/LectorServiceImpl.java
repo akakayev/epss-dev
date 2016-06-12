@@ -61,8 +61,13 @@ public class LectorServiceImpl implements LectorService{
     public List<Discipline> getDisciplineListForLector(int id) {
         List<Integer> ids=lectorDisciplineDao.getDisciplinesIdsForLector(id);
         if(ids.isEmpty()||ids==null)return Collections.emptyList();
-        List<Discipline> disciplines=disciplineService.getDisciplinesWithIds(ids);
+        List<Discipline> disciplines=disciplineService.getDisciplinesWithIds(ids.toArray(new Integer[0]));
         return disciplines;
+    }
+
+    @Override
+    public Lector getLectorById(int id) {
+        return lectorDao.getLectorById(id);
     }
 
     private boolean canAddLector(String login) {
