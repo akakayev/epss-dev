@@ -1,5 +1,6 @@
 package com.epss.controllers;
 
+import com.epss.service.AcademicService;
 import com.epss.service.DisciplineService;
 import com.epss.service.ManualService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,4 +53,21 @@ public class UnsortedPagesController extends BasePageController{
         model.addAttribute("disciplines", disciplineService.getDisciplinesListForDepartment(Integer.valueOf(department)));
         return "disciplines";
     }
+
+    @Autowired
+    private AcademicService academicService;
+
+    @RequestMapping(value = {"/lector/plan-{department}", "/student/plan-{department}"}, method = RequestMethod.GET)
+    public String getPlan(@PathVariable String department, ModelMap model) {
+        model.addAttribute("disciplines", academicService.getPlanForDepartment(Integer.valueOf(department)));
+        return "academicPlan";
+    }
+//
+//    @RequestMapping(value = { "/discipline" }, method = RequestMethod.GET)
+//    public String disciplinePage(ModelMap model) {
+//        model.addAttribute("manuals", manualService.getManualsForDiscipline(1));
+//        model.addAttribute("works", disciplineService.getWorksForDiscipline(1));
+//        return "/academicPlan";
+//    }
+
 }
