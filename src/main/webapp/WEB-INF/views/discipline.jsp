@@ -37,7 +37,7 @@
         <div id="panel1" class="tab-pane fade in active">
 
             <div class ="tabBelow">
-                <a href="<c:url value='/work' />" class=" btn btn-default">Создать работу</a>
+                <a href="<c:url value='lector/addWork-${discipline.id}' />" class=" btn btn-default">Создать работу</a>
             </div>
             <table class="table">
                 <thead>

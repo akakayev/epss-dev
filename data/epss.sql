@@ -27,7 +27,7 @@ CREATE TABLE `academic_performance` (
   `student_id` int(11) NOT NULL,
   `work-id` int(11) NOT NULL,
   `score` int(11) DEFAULT '0',
-  `date` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`,`student_id`,`work-id`),
   KEY `work_idx` (`work-id`),
   CONSTRAINT `student` FOREIGN KEY (`id`) REFERENCES `students` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -62,10 +62,12 @@ CREATE TABLE `academic_plan` (
   `seminars` int(11) DEFAULT '0',
   `evaluation` set('EXAM','CP','CW','CREDIT') DEFAULT 'EXAM',
   `diploma` tinyint(1) DEFAULT '1',
+  `department` int(11) NOT NULL,
   PRIMARY KEY (`id`,`course`,`semester`,`education_form`,`discipline_id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `subject_idx` (`discipline_id`),
-  CONSTRAINT `subject` FOREIGN KEY (`discipline_id`) REFERENCES `disciplines` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `subject` FOREIGN KEY (`discipline_id`) REFERENCES `disciplines` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,6 +76,7 @@ CREATE TABLE `academic_plan` (
 
 LOCK TABLES `academic_plan` WRITE;
 /*!40000 ALTER TABLE `academic_plan` DISABLE KEYS */;
+INSERT INTO `academic_plan` VALUES (1,4,8,'FULL_TIME',1,72,48,30,0,'EXAM',1,1),(2,1,1,'FULL_TIME',5,87,42,30,15,'EXAM',0,1),(3,1,2,'FULL_TIME',5,87,42,30,15,'EXAM',1,1),(4,2,3,'FULL_TIME',5,60,0,30,30,'CP',1,1),(5,2,4,'FULL_TIME',6,72,42,30,0,'EXAM',1,1),(6,4,8,'FULL_TIME',3,28,14,14,0,'CREDIT',1,1),(7,4,8,'FULL_TIME',4,28,14,14,0,'CREDIT',1,1),(8,3,5,'FULL_TIME',6,30,0,0,30,'CP',1,1),(9,4,8,'FULL_TIME',2,72,42,30,0,'EXAM',1,1),(10,3,5,'FULL_TIME',7,72,42,30,0,'EXAM',1,1),(11,3,6,'FULL_TIME',7,60,0,30,30,'CP',1,1);
 /*!40000 ALTER TABLE `academic_plan` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,12 +92,12 @@ CREATE TABLE `attachments` (
   `file_name` varchar(45) NOT NULL,
   `size` int(11) DEFAULT '0',
   `format` varchar(45) DEFAULT NULL,
-  `file` longblob NOT NULL,
-  `link` varchar(100) DEFAULT NULL,
+  `file` longblob,
+  `link` varchar(2000) DEFAULT NULL,
   `attachment_kind` enum('REPORT','MANUAL') NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -103,6 +106,7 @@ CREATE TABLE `attachments` (
 
 LOCK TABLES `attachments` WRITE;
 /*!40000 ALTER TABLE `attachments` DISABLE KEYS */;
+INSERT INTO `attachments` VALUES (1,'МУ2016',0,'doc',NULL,'https://docs.google.com/document/d/1T2W_92tlOOOOGAVYM_62sJ8XZT7-DSUXHDaGn4oTs90/edit','MANUAL');
 /*!40000 ALTER TABLE `attachments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -185,7 +189,7 @@ CREATE TABLE `disciplines` (
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `department_idx` (`department_id`),
   CONSTRAINT `discipline_department` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -194,6 +198,7 @@ CREATE TABLE `disciplines` (
 
 LOCK TABLES `disciplines` WRITE;
 /*!40000 ALTER TABLE `disciplines` DISABLE KEYS */;
+INSERT INTO `disciplines` VALUES (1,'Базы Данных',1),(2,'Защита Информации',1),(3,'Облачные и Grid технологии',1),(4,'Переферийные устройства',1),(5,'Программирование',1),(6,'Системное программирование',1),(7,'Системное программное обеспечение',1),(8,'Архитектура компьютера',1),(9,'Схематехника',1);
 /*!40000 ALTER TABLE `disciplines` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -215,9 +220,9 @@ CREATE TABLE `faculties` (
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `details_idx` (`details_id`),
   KEY `institution_idx` (`institution_id`),
-  CONSTRAINT `faculty_details` FOREIGN KEY (`details_id`) REFERENCES `department_details` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `faculty_details` FOREIGN KEY (`details_id`) REFERENCES `department_details` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `institution` FOREIGN KEY (`institution_id`) REFERENCES `institutions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -226,7 +231,7 @@ CREATE TABLE `faculties` (
 
 LOCK TABLES `faculties` WRITE;
 /*!40000 ALTER TABLE `faculties` DISABLE KEYS */;
-INSERT INTO `faculties` VALUES (1,'ИТиУВТС','ИТиУВТС',1,1,'INSTITUTE');
+INSERT INTO `faculties` VALUES (1,'ИТиУВТС','ИТиУВТС',1,1,'INSTITUTE'),(2,'Физика','Физика',2,1,'FACULTY');
 /*!40000 ALTER TABLE `faculties` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -302,17 +307,18 @@ CREATE TABLE `institutions` (
   PRIMARY KEY (`id`,`full_name`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `full_name_UNIQUE` (`full_name`),
+  KEY `details` (`details_id`),
   CONSTRAINT `details` FOREIGN KEY (`details_id`) REFERENCES `department_details` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `lector_discipline`
+-- Dumping data for table `institutions`
 --
 
 LOCK TABLES `institutions` WRITE;
 /*!40000 ALTER TABLE `institutions` DISABLE KEYS */;
-INSERT INTO `institutions` VALUES (1,'СевГУ','СевГУ',1,'UNIVERSITY');
+INSERT INTO `institutions` VALUES (1,'СевГУ','СевГУ',1,'UNIVERSITY'),(2,'КФУ','КФУ',1,'UNIVERSITY');
 /*!40000 ALTER TABLE `institutions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -339,6 +345,7 @@ CREATE TABLE `lector_discipline` (
 
 LOCK TABLES `lector_discipline` WRITE;
 /*!40000 ALTER TABLE `lector_discipline` DISABLE KEYS */;
+INSERT INTO `lector_discipline` VALUES (3,1),(3,2);
 /*!40000 ALTER TABLE `lector_discipline` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -361,7 +368,7 @@ CREATE TABLE `lectors` (
   KEY `lector_idx` (`user_id`),
   CONSTRAINT `lector_department` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `lector_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -370,6 +377,7 @@ CREATE TABLE `lectors` (
 
 LOCK TABLES `lectors` WRITE;
 /*!40000 ALTER TABLE `lectors` DISABLE KEYS */;
+INSERT INTO `lectors` VALUES (3,'Кандидат наук','Доцент',1,7),(4,'Кандидат наук','Старший преподаватель',1,10);
 /*!40000 ALTER TABLE `lectors` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -390,7 +398,7 @@ CREATE TABLE `manuals` (
   KEY `manual_subject_idx` (`discipline`),
   CONSTRAINT `file` FOREIGN KEY (`attachment_id`) REFERENCES `attachments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `manual_subject` FOREIGN KEY (`discipline`) REFERENCES `academic_plan` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -399,6 +407,7 @@ CREATE TABLE `manuals` (
 
 LOCK TABLES `manuals` WRITE;
 /*!40000 ALTER TABLE `manuals` DISABLE KEYS */;
+INSERT INTO `manuals` VALUES (1,1,1);
 /*!40000 ALTER TABLE `manuals` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -480,7 +489,7 @@ CREATE TABLE `reports` (
   `version` int(11) DEFAULT '0',
   `attachment_id` int(11) NOT NULL,
   `accepted` tinyint(1) DEFAULT '0',
-  `date` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `student_idx` (`student_id`),
   KEY `work_report_idx` (`work_id`),
@@ -508,15 +517,21 @@ DROP TABLE IF EXISTS `semester_results`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `semester_results` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `student_id` int(11) NOT NULL,
   `discipline` int(11) NOT NULL,
   `score` int(11) DEFAULT '0',
-  `date` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `lector_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `student_id_idx` (`student_id`),
   KEY `subject_result_idx` (`discipline`),
+  KEY `examinator_idx` (`lector_id`),
+  CONSTRAINT `examinator` FOREIGN KEY (`lector_id`) REFERENCES `lectors` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `student_id` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `subject_result` FOREIGN KEY (`discipline`) REFERENCES `academic_plan` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -525,6 +540,7 @@ CREATE TABLE `semester_results` (
 
 LOCK TABLES `semester_results` WRITE;
 /*!40000 ALTER TABLE `semester_results` DISABLE KEYS */;
+INSERT INTO `semester_results` VALUES (1,9,1,100,'2016-06-12 16:46:39',3);
 /*!40000 ALTER TABLE `semester_results` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -588,7 +604,7 @@ CREATE TABLE `students` (
   KEY `user_idx` (`user_id`),
   CONSTRAINT `group_id` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -597,7 +613,7 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES (1,123,1,2,1),(7,1234,2,1,1);
+INSERT INTO `students` VALUES (9,14,8,8,1),(10,1236547895,9,8,1);
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -649,7 +665,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`,`login`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `login_UNIQUE` (`login`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -658,7 +674,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Артём','Валерьевич','Какаев',0,0,NULL,'kakayev','$2a$10$4eqIF5s/ewJwHK1p8lqlFOEm2QIA0S8g6./Lok.pQxqcxaBZYChRm','STUDENT'),(2,'Тигран','Арутюнович','Абрамов',0,0,NULL,'abramov','$2a$10$4eqIF5s/ewJwHK1p8lqlFOEm2QIA0S8g6./Lok.pQxqcxaBZYChRm','LECTOR'),(3,'firstName','middleName','lastName',0,0,NULL,'login','$2a$10$3.j7qvY/7zhA5F14LLpyHuLI1ekuYdtHDKxu7DYZrJbZ5Vj0tXQIi','STUDENT');
+INSERT INTO `users` VALUES (1,'Артём','Валерьевич','Какаев',0,0,NULL,'kakayev','$2a$10$4eqIF5s/ewJwHK1p8lqlFOEm2QIA0S8g6./Lok.pQxqcxaBZYChRm','STUDENT'),(7,'Сергей','Николаевич','Фисун',0,0,NULL,'fisun@mail.ru','$2a$10$AzOOU9VD5k7XBbPwP3geTepFnD3uJqLAfCFaMcJB3OYWeoOmu/0J.','LECTOR'),(8,'Артем','Валерьевич','Какаев',0,0,NULL,'akakayev@gdgf.dfg','$2a$10$/liljUWnJgAr47nTLV8AN.E/2P.vjHLcvYaCrwYKBDtVDQUkFE8i.','STUDENT'),(9,'Артем','Валерьевич','Какаев',0,0,NULL,'akakayev@mail.ru','$2a$10$9EoQ9jHe86Ag4x51YEOnbOoEEyLVd0MjPzDXknX/6L.uhA558mn6u','STUDENT'),(10,'Тигран','Арутюнович','Абрамов',0,0,NULL,'abramov@mail.ru','$2a$10$hj.JFjuABHw.9FcCsDOUI.eRcWHJ/7FhXVVeAs1OafcAsZWTi/Kxm','LECTOR');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -681,8 +697,8 @@ CREATE TABLE `works` (
   KEY `kind_work_idx` (`work_kind_id`),
   KEY `subject_idx` (`discipline_id`),
   CONSTRAINT `kind_work` FOREIGN KEY (`work_kind_id`) REFERENCES `works_kinds` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `work_subject` FOREIGN KEY (`discipline_id`) REFERENCES `academic_plan` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `work_subject` FOREIGN KEY (`discipline_id`) REFERENCES `academic_plan` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -691,6 +707,7 @@ CREATE TABLE `works` (
 
 LOCK TABLES `works` WRITE;
 /*!40000 ALTER TABLE `works` DISABLE KEYS */;
+INSERT INTO `works` VALUES (3,1,1,'1','введение в SQL ','2016-06-11 09:43:24'),(4,1,1,'2','Запросы Inser, Select','2016-06-11 16:28:33'),(5,1,1,'3','Связывание таблиц','2016-06-11 16:29:42'),(6,1,1,'4','сложные запросы','2016-06-11 16:29:42');
 /*!40000 ALTER TABLE `works` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -707,7 +724,7 @@ CREATE TABLE `works_kinds` (
   PRIMARY KEY (`id`,`name`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `name_UNIQUE` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -716,6 +733,7 @@ CREATE TABLE `works_kinds` (
 
 LOCK TABLES `works_kinds` WRITE;
 /*!40000 ALTER TABLE `works_kinds` DISABLE KEYS */;
+INSERT INTO `works_kinds` VALUES (1,'Лабораторная работа'),(2,'Реферат'),(3,'РГЗ'),(4,'Курсовая работа'),(5,'Курсовой проект'),(6,'Доклад');
 /*!40000 ALTER TABLE `works_kinds` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -728,4 +746,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-06-06 20:41:56
+-- Dump completed on 2016-06-15 19:55:56
