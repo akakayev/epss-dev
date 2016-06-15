@@ -46,53 +46,48 @@
 
 
 
-        <button id="submit" id="submit" type="submit" class="btn btn-default" >Создать работу</button>
+        <button  id="submit" type="submit" class="btn btn-default" >Создать работу</button>
 
     </form>
 </div>
 <div class="col-sm-2 col-md-3"></div>
 <script>
     jQuery(document).ready(function() {
-        $("workForm").submit(function (event) {
+        $("#workForm").submit(function (event) {
             enableSearchButton(false);
             event.preventDefault();
             createWork();
         });
     });
-
-        function createWork(){
-            var work = {};
-
-            work["discipline"] = 1;
-            work["kindWork"] = $('#kindWork').val();
-            work["workNumber"] = $('#workNumber').val();
-            work["themeWork"] = $('#themeWork').val();
-            work["data"] = $('#deadline').val();
-            console.log("SUCCESS: ", work);
-
-            $.ajax({
-                type: "SET",
-                contentType: "application/json",
-                url: "",
-                data: JSON.stringify(work),
-                dataType: 'json',
-                timeout: 100000,
-                success: function (data) {
-                    console.log("SUCCESS: ", data);
-
-
-                },
-                error: function (e) {
-                    console.log("ERROR: ", e);
-                    display(e);
-                },
-                done: function (e) {
-                    console.log("DONE");
-                    enableSearchButton(true);
-                }
-            });
-        }
-
+    function createWork(){
+        var work = {};
+        work['id']=1;
+        work["disciplineId"] = ${discipline.id};
+        work["workKindId"] = 1;
+        work["number"] = $('#workNumber').val();
+        work["theme"] = $('#themeWork').val();
+        work["deadline"] = $('#deadline').val();
+        console.log("SUCCESS: ", work);
+        $.ajax({
+            type: "GET",
+            contentType: "application/json",
+            url: "/epss/lector/addWork",
+            data: JSON.stringify(work),
+            dataType: 'json',
+            timeout: 100000,
+            success: function (data) {
+                console.log("SUCCESS: ", data);
+            },
+            error: function (e) {
+                console.log("ERROR: ", e);
+                display(e);
+            },
+            done: function (e) {
+                console.log("DONE");
+                enableSearchButton(true);
+            }
+        });
+    }
 </script>
 </body>
 </html>
