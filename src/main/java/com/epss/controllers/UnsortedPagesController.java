@@ -33,6 +33,11 @@ public class UnsortedPagesController extends BasePageController {
         return "/messages";
     }
 
+    @RequestMapping(value = {"/student/addReport"}, method = RequestMethod.GET)
+    public String addReport(ModelMap model) {
+        return "/student/addReport";
+    }
+
     @Autowired
     private ManualService manualService;
 
