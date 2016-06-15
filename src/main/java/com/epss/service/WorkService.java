@@ -10,5 +10,5 @@ public interface WorkService {
 
     public void addWork(Work work);
 
-    public WorkKind getWorkKind(String kind);
+    public String getWorkKind(int id);
 }

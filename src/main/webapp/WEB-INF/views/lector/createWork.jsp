@@ -62,18 +62,18 @@
 
         function createWork(){
             var work = {};
-
-            work["discipline"] = 1;
-            work["kindWork"] = $('#kindWork').val();
-            work["workNumber"] = $('#workNumber').val();
-            work["themeWork"] = $('#themeWork').val();
-            work["data"] = $('#deadline').val();
+            work['id']=null;
+            work["disciplineId"] = ${discipline.id};
+            work["workKindId"] = 1;
+            work["number"] = $('#workNumber').val();
+            work["theme"] = $('#themeWork').val();
+            work["deadline"] = $('#deadline').val();
             console.log("SUCCESS: ", work);
 
             $.ajax({
-                type: "SET",
+                type: "GET",
                 contentType: "application/json",
-                url: "",
+                url: "/epss/lector/addWork",
                 data: JSON.stringify(work),
                 dataType: 'json',
                 timeout: 100000,

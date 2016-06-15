@@ -10,4 +10,6 @@ public interface WorkDao {
     public Work getWork(int id);
 
     public List<Work> getWorksForDiscipline(int id);
+
+    public void addWork(Work work);
 }
