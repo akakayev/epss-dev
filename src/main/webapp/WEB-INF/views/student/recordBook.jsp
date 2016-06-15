@@ -7,6 +7,7 @@
     <title>Электронная зачетка</title>
     <link href="<c:url value='/static/css/bootstrap.css' />" rel="stylesheet"/>
     <link href="<c:url value='/static/css/mycss.css' />" rel="stylesheet"/>
+    <script src="<c:url value='/static/js/jquery-2.2.3.js'/>"></script>
 </head>
 <body>
 <%@include file="head.jsp" %>
