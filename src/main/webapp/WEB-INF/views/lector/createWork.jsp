@@ -59,35 +59,40 @@
             createWork();
         });
     });
-    function createWork(){
-        var work = {};
-        work['id']=1;
-        work["disciplineId"] = ${discipline.id};
-        work["workKindId"] = 1;
-        work["number"] = $('#workNumber').val();
-        work["theme"] = $('#themeWork').val();
-        work["deadline"] = $('#deadline').val();
-        console.log("SUCCESS: ", work);
-        $.ajax({
-            type: "GET",
-            contentType: "application/json",
-            url: "/epss/lector/addWork",
-            data: JSON.stringify(work),
-            dataType: 'json',
-            timeout: 100000,
-            success: function (data) {
-                console.log("SUCCESS: ", data);
-            },
-            error: function (e) {
-                console.log("ERROR: ", e);
-                display(e);
-            },
-            done: function (e) {
-                console.log("DONE");
-                enableSearchButton(true);
-            }
-        });
-    }
+
+        function createWork(){
+            var work = {};
+            work['id']=null;
+            work["disciplineId"] = ${discipline.id};
+            work["workKindId"] = 1;
+            work["number"] = $('#workNumber').val();
+            work["theme"] = $('#themeWork').val();
+            work["deadline"] = $('#deadline').val();
+            console.log("SUCCESS: ", work);
+
+            $.ajax({
+                type: "GET",
+                contentType: "application/json",
+                url: "/epss/lector/addWork",
+                data: JSON.stringify(work),
+                dataType: 'json',
+                timeout: 100000,
+                success: function (data) {
+                    console.log("SUCCESS: ", data);
+
+
+                },
+                error: function (e) {
+                    console.log("ERROR: ", e);
+                    display(e);
+                },
+                done: function (e) {
+                    console.log("DONE");
+                    enableSearchButton(true);
+                }
+            });
+        }
+
 </script>
 </body>
 </html>

@@ -21,4 +21,9 @@ public class WorkDaoImpl extends AbstractDao<Integer, Work> implements WorkDao{
                 .addOrder(Order.asc("id"));
         return (List<Work>) cr.list();
     }
+
+    @Override
+    public void addWork(Work work) {
+        persist(work);
+    }
 }
