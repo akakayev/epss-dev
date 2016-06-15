@@ -18,11 +18,6 @@ import java.util.Map;
 @SessionAttributes("roles")
 public class UnsortedPagesController extends BasePageController {
 
-    @RequestMapping(value = {"/work"}, method = RequestMethod.GET)
-    public String addWorkPage(ModelMap model) {
-        return "/work";
-    }
-
     @RequestMapping(value = {"/myWork"}, method = RequestMethod.GET)
     public String myWorksPage(ModelMap model) {
         return "/myWork";
@@ -41,10 +36,12 @@ public class UnsortedPagesController extends BasePageController {
     @Autowired
     private ManualService manualService;
 
-    @RequestMapping(value = {"/discipline"}, method = RequestMethod.GET)
-    public String disciplinePage(ModelMap model) {
-        model.addAttribute("manuals", manualService.getManualsForDiscipline(1));
-        model.addAttribute("works", disciplineService.getWorksForDiscipline(1));
+    @RequestMapping(value = {"/discipline-{id}"}, method = RequestMethod.GET)
+    public String disciplinePage(@PathVariable String id, ModelMap model) {
+        int disciplineId= Integer.parseInt(id);
+        model.addAttribute("discipline", disciplineService.getDisciplinesWithIds(disciplineId).get(0));
+        model.addAttribute("manuals", manualService.getManualsForDiscipline(disciplineId));
+        model.addAttribute("works", disciplineService.getWorksForDiscipline(disciplineId));
         return "/discipline";
     }
 
