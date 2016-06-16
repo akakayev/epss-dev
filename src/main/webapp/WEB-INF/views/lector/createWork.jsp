@@ -28,9 +28,9 @@
 
         <label>Выберите вид работы</label>
         <select class="form-control" id="kindWork">
-            <%--<c:forEach items="${worksKinds}"var="kindWork">--%>
-            <%--<option value="${kindWork.id}">${kindWork.name}</option>--%>
-            <%--</c:forEach>--%>
+            <c:forEach items="${worksKinds}" var="kindWork">
+            <option value="${kindWork.id}">${kindWork.name}</option>
+            </c:forEach>
         </select>
         <label>Введите номер работы</label>
         <input type="number" class="form-control" id="workNumber"
@@ -54,7 +54,6 @@
 <script>
     jQuery(document).ready(function() {
         $("#workForm").submit(function (event) {
-            enableSearchButton(false);
             event.preventDefault();
             createWork();
         });
@@ -62,8 +61,8 @@
 
         function createWork(){
             var work = {};
-            work['id']=null;
-            work["disciplineId"] = ${discipline.id};
+            work["id"]=null;
+            work["disciplineId"] =${discipline.id};
             work["workKindId"] = 1;
             work["number"] = $('#workNumber').val();
             work["theme"] = $('#themeWork').val();
@@ -84,11 +83,9 @@
                 },
                 error: function (e) {
                     console.log("ERROR: ", e);
-                    display(e);
                 },
                 done: function (e) {
                     console.log("DONE");
-                    enableSearchButton(true);
                 }
             });
         }
